@@ -1,0 +1,14 @@
+<% if current_user %>
+  <% if current_user.admin? %>
+    <h1>Home#Admin</h1>
+    <p>Find me in app/views/home/index.html.erb</p>
+  <% elsif current_user.manager? %>
+    <h1>Home#manager</h1>
+    <p>Find me in app/views/home/index.html.erb</p>
+  <% else %>
+      <h1>Home#user</h1>
+      <p>Find me in app/views/home/index.html.erb</p>
+  <% end %>
+<% else %>
+  <%= render 'home' %>
+<% end %>

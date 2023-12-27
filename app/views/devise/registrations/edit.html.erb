@@ -1,0 +1,117 @@
+<div class="col-lg-6 mx-lg-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <h2 class="card-title text-center">Edit <%= resource_name.to_s.humanize %></h2>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: 'row g-3') do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="col-md-6">
+          <%= f.label :name, class:'form-label' %>
+          <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :email, class:'form-label' %>
+            <%= f.email_field :email, autocomplete: "email", class: 'form-control '%>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :mobile, class: "form-label" %>
+            <%= f.text_field :mobile, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :date_of_birth, class:'form-label' %>
+            <%= f.date_field :date_of_birth, class: 'form-control' %>
+          </div>
+          <div class="col-12">
+            <%= f.label :address, class:'form-label' %>
+            <%= f.text_field :address, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :role, class:'form-label' %>
+            <%= f.select :role, User.roles.keys.map { |role| [role, role] }, {},class: 'form-select' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :status, class:'form-label' %>  
+            <%= f.select :status, ["Single", "Married"],{}, class: 'form-select' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :city, class:'form-label' %>  
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :state, class:'form-label' %>  
+            <%= f.select :state, [ "Andhra Pradesh",
+                  "Arunachal Pradesh",
+                  "Assam",
+                  "Bihar",
+                  "Chhattisgarh",
+                  "Goa",
+                  "Gujarat",
+                  "Haryana",
+                  "Himachal Pradesh",
+                  "Jammu and Kashmir",
+                  "Jharkhand",
+                  "Karnataka",
+                  "Kerala",
+                  "Madhya Pradesh",
+                  "Maharashtra",
+                  "Manipur",
+                  "Meghalaya",
+                  "Mizoram",
+                  "Nagaland",
+                  "Odisha",
+                  "Punjab",
+                  "Rajasthan",
+                  "Sikkim",
+                  "Tamil Nadu",
+                  "Telangana",
+                  "Tripura",
+                  "Uttarakhand",
+                  "Uttar Pradesh",
+                  "West Bengal",
+                  "Andaman and Nicobar Islands",
+                  "Chandigarh",
+                  "Dadra and Nagar Haveli",
+                  "Daman and Diu",
+                  "Delhi",
+                  "Lakshadweep",
+                  "Puducherry"],{}, class: 'form-select' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :zipcode, class:'form-label' %>  
+            <%= f.text_field :zipcode, class: 'form-control' %>
+          </div>
+
+          <div class="col-md-4">
+            <%= f.label :password, class:'btn btn-primary' %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="col-md-4">
+            <%= f.label :password_confirmation, class:'btn-label' %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",class: 'from-control' %>
+          </div>
+
+          <div class="col-md-4">
+            <%= f.label :current_password, class:'form-label' %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.password_field :current_password, autocomplete: "current-password", class:'from-control' %>
+          </div>
+
+          <div class="col-12">
+            <%= f.submit "Update", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+        <h3>Cancel my account</h3>
+
+        <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+        <%= link_to "Back", :back %>
+      <% end %>
+    </div>
+  </div>
+</div>
