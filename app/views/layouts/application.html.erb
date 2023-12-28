@@ -11,6 +11,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/navigation_bar" %>
+
+    <div class="container">
+      <div class="row">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>  
+      </div>  
+    </div>
+
   </body>
 </html>
+
+
+
+
+
+
+
