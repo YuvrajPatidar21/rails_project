@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
   <div class="container-fluid">
     <%= link_to "Hotel Management", root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,11 +6,11 @@
     </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <%= link_to "Home", root_path, class:'nav-link active' %>
-          </li>
           <% if current_user %>
             <% if current_user.admin? %>
+              <li class="nav-item active">
+                <%= link_to "Home", admin_dashboard_index_path, class:'nav-link active' %>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Rooms</a>
               </li>
@@ -28,6 +28,9 @@
               </li>
 
             <% elsif current_user.manager? %>
+              <li class="nav-item active">
+                <%= link_to "Home", manager_dashboard_index_path, class:'nav-link active' %>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Rooms</a>
               </li>
@@ -44,6 +47,9 @@
                 <a class="nav-link active" href="#">Service</a>
               </li>          
             <% else %>
+              <li class="nav-item active">
+                <%= link_to "Home", customer_dashboard_index_path, class:'nav-link active' %>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Rooms</a>
               </li>
@@ -59,12 +65,15 @@
             <%# </li> %>
 
           <% else %>
-
-          <li class="nav-item">
-            <a class="nav-link active" href="#">About</a>
+          <li class="nav-item active">
+            <%= link_to "Home", root_path, class:'nav-link active' %>
           </li>
           <li class="nav-item">
-            <a class="nav-link active " href="#">Service</a>
+            <%= link_to "About", about_path, class: "nav-link active"  %>
+            <%# <a class="nav-link active" href="#about">About</a> %>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Services", service_path, class: "nav-link active" %>
           </li>
             <li class="nav-item">
               <%= link_to "Login", new_user_session_path, class: "nav-link active"  %>
@@ -73,7 +82,8 @@
               <%= link_to "Sign up", new_user_registration_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link active ">Contact Us<br></a>
+              <%= link_to "Contact us", contact_path, class: "nav-link active" %>
+              <%# <a class="nav-link active" href="#">Contact Us<br></a> %>
             </li> 
           <% end %>  
         </ul>
@@ -86,7 +96,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Profile</a></li>  
                 <li><hr class="dropdown-divider"></li>
-                <li><%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: "dropdown-item" %></li>
+                <li><%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: "dropdown-item " %>
               </ul>
             </li>    
           <% end %>  

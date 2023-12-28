@@ -39,7 +39,7 @@ h6 {
 
 #hero:before {
   content: "";
-  background: rgba(6, 101, 183, 0.9);
+  background: rgba(3, 96, 178, 0.7);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -218,7 +218,7 @@ section {
 --------------------------------------------------------------*/
 .about {
   padding: 140px 0;
-  background: url("../images/about-bg.png") top center no-repeat;
+  background-image: url("../images/about-bg.png") top center no-repeat;
   position: relative;
 }
 
@@ -473,7 +473,7 @@ section {
 # Contact
 --------------------------------------------------------------*/
 .contact {
-  background: url("../images/contact-bg.png") left center no-repeat;
+  background-image: url("../images/contact-bg.png") left center no-repeat;
   position: relative;
 }
 
