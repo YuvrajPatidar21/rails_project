@@ -6,6 +6,7 @@
     </div>
     <div class="card-body">
       <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), class: "row") do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="mb-2">
           <%= f.label :email, class: 'form-label' %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

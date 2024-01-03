@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <p style="color: green"><%= notice %></p>
+  <h2>All Hotels</h2>
+  <div>
+    <%= link_to "New hotel", new_hotel_path, class: 'btn btn-primary mb-3 end-0' %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-primary">
+        <tr>          
+          <th>Name</th>
+          <th>Email</th>
+          <th>Tele-Phone</th>
+          <th>Location</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zipcode</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <% @hotels.each do |hotel| %>
+          <%= render hotel %>
+          
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

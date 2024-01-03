@@ -29,7 +29,7 @@ h6 {
   height: 80vh;
   overflow: hidden;
   position: relative;
-  background: url("../images/cta-bg.jpg") top center;
+  background: url("cta-bg.jpg") top center;
   background-size: cover;
   position: relative;
   margin-bottom: -90px;
@@ -218,7 +218,7 @@ section {
 --------------------------------------------------------------*/
 .about {
   padding: 140px 0;
-  background-image: url("../images/about-bg.png") top center no-repeat;
+  background: url("about-bg.png") top center no-repeat;
   position: relative;
 }
 
@@ -473,7 +473,8 @@ section {
 # Contact
 --------------------------------------------------------------*/
 .contact {
-  background-image: url("../images/contact-bg.png") left center no-repeat;
+  padding: 140px, 0;
+  background: url("about-bg.png") top center no-repeat;
   position: relative;
 }
 
