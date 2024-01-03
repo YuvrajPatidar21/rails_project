@@ -1,0 +1,25 @@
+<div class="card mt-5" style="max-width: auto;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag 'portfolio/portfolio-3.jpg', style:'height: 250px; width: auto;' %>
+    </div>
+    <div class="col">
+      <div class="card-body">
+        <h3 class="card-title"><strong>Hotel name: </strong><%= @hotel.name %></h3>
+        <h4 class='card-title'><strong>Email: </strong><%= @hotel.email %></h4>
+        <h4 class='card-title'><strong>Telephone: </strong><%= @hotel.telephone %></h4>
+        <p class='card-title'><strong>Location: </strong><%= @hotel.location %> <strong>City: </strong><%= @hotel.city %> <strong>State: </strong> <%= @hotel.state %> <strong>Zipcode: </strong><%= @hotel.zipcode %>.</p>
+
+        <p class="card-text"><strong>Description: </strong><%= @hotel.description %></p>
+        <% if current_user.admin? %>
+          <%= link_to "Edit this hotel", edit_hotel_path(@hotel), class: 'btn btn-success' %>
+          <%= link_to "Back to hotels", hotels_path, class: 'btn btn-primary' %>
+          <%= link_to "Destroy this hotel", @hotel, data: {turbo_method: :delete,
+                                                            turbo_confirm: "Are you sure to delete?"}, class: 'btn btn-danger' %>
+        <% else %>
+        <%# blank %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

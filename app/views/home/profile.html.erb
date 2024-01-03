@@ -1,0 +1,83 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    
+    <div>
+      <h2><strong>Your Profile</strong></h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <% if current_user.profile_picture.attached? %>
+              <%= image_tag current_user.profile_picture, alt: 'avatar', class: 'rounded-circle img-fluid', style: 'width: 150px;' %>
+            <% else %>
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">  
+            <% end %>
+            <h5 class="my-3"><%= current_user.name %></h5>
+            <p class="text-muted mb-1"><strong>Role: </strong><%= current_user.role %></p>
+            <p class="text-muted mb-4"><strong>Address: </strong><%= current_user.address %>, <%= current_user.city %>, <%= current_user.state %>, <%= current_user.zipcode %></p>
+            <div class="d-flex justify-content-center mb-2">
+              <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-primary m-2' %> 
+
+              <%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: 'btn btn-danger m-2' %>
+              <%# <button type="button" class="btn btn-primary">Follow</button> %>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.name %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.mobile %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Role</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.role %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= current_user.address %>, <%= current_user.city %>, <%= current_user.state %>, <%= current_user.zipcode %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>

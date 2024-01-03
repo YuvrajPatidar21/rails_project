@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hotels
   namespace :customer do
     get 'dashboard/index'
   end
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   }
   root "home#index"
   get 'home/index'
+  get 'home/profile', to: 'home#profile', as: 'profile'
   get 'about', to: 'home#about'
   get 'service', to: 'home#service'
   get 'contact', to: 'home#contact'

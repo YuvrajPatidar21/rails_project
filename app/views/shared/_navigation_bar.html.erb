@@ -11,6 +11,9 @@
               <li class="nav-item active">
                 <%= link_to "Home", admin_dashboard_index_path, class:'nav-link active' %>
               </li>
+              <li class="nav-item dropdown ">
+              <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Rooms</a>
               </li>
@@ -31,7 +34,7 @@
               <li class="nav-item active">
                 <%= link_to "Home", manager_dashboard_index_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item ">
                 <a class="nav-link active " href="#">Rooms</a>
               </li>
               <li class="nav-item">
@@ -49,6 +52,9 @@
             <% else %>
               <li class="nav-item active">
                 <%= link_to "Home", customer_dashboard_index_path, class:'nav-link active' %>
+              </li>
+              <li class="nav-item dropdown ">
+              <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Rooms</a>
@@ -94,14 +100,13 @@
                 <strong><%= current_user&.role.capitalize %>: </strong><%= current_user&.name %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Profile</a></li>  
+                <li><%= link_to "Profile", profile_path, class:'dropdown-item' %></li>  
                 <li><hr class="dropdown-divider"></li>
                 <li><%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: "dropdown-item " %>
               </ul>
             </li>    
           <% end %>  
         </ul>
-        
-      </div>       
+    </div>       
   </div>
 </nav>

@@ -9,6 +9,9 @@ class HomeController < ApplicationController
   def service
     
   end
+  def profile
+    
+  end
   def contact
     @contact = Contact.new
   end
