@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  resources :hotels
-  namespace :customer do
-    get 'dashboard/index'
-  end
-  namespace :manager do
-    get 'dashboard/index'
-  end
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -16,10 +10,11 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/profile', to: 'home#profile', as: 'profile'
   get 'about', to: 'home#about'
-  get 'service', to: 'home#service'
+  get 'home_service', to: 'home#home_service'
   get 'contact', to: 'home#contact'
   post 'contact', to: 'home#process_contact', as: 'process_contact'
-
+  resources :services
+  resources :hotels
   namespace :admin do
     resources :dashboard, only: [:index]
   end

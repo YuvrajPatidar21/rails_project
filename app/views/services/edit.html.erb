@@ -1,0 +1,12 @@
+<% content_for :add_service_heading do  %>
+  <h2 class="card-title text-center ">Edit Service</h2>
+<% end %>
+
+<%= render "form", service: @service %>
+
+<br>
+
+<div class="lg-6 mt-5 mx-lg-auto text-center ">
+  <%= link_to "Show this service", @service %> |
+  <%= link_to "Back to services", services_path %>
+</div>

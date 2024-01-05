@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   def about
 
   end
-  def service
+  def home_service
     
   end
   def profile

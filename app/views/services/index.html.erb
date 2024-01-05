@@ -1,0 +1,28 @@
+<div class="card shadow">
+  <div class="card-header text-center ">
+    <h1><strong>All Services</strong></h1>
+  </div>
+
+  <div class='col m-3'>
+    <%= link_to "New service", new_service_path, class:'btn btn-primary' %>
+  </div>
+  <% @services.group_by(&:hotel).each do |hotel, services| %>
+    <div class="card-header mb-2 ">
+      <h2>Service of <%= hotel.name %></h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5 ">
+      <% services.each do |service| %>
+        <div class="col">
+          <div class="card h-100 " style="background-color: lightgray;">  
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= service.name %></strong></h5>
+              <p class="card-text"><%= service.description %></p>
+              <%= link_to "Show this service", service,class:'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
