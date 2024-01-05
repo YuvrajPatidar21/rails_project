@@ -1,0 +1,42 @@
+<div class="col-lg-6 mt-5 mx-lg-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <%= yield :add_service_heading %>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: service, class: 'row') do |form| %>
+        <% if service.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+            <ul>
+              <% service.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-12 mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :description, class: 'form-label' %>
+          <%= form.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-3">
+            <%= form.label :hotel_id, 'Select Hotel', class:'form-label' %>
+            <%= form.collection_select :hotel_id, Hotel.all, :id, :name, {}, class:'form-select' %>    
+        </div>
+
+        <div class="col-12">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
