@@ -1,0 +1,27 @@
+<div class="card shadow">
+  <div class="card-header text-center ">
+    <h1><strong>All Room Type</strong></h1>
+  </div>
+
+  <div class='col m-3'>
+    <%= link_to "Add new room type", new_room_type_path, class:'btn btn-primary' %>
+  </div>
+  
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4 ">
+      <% @room_types.each do |room_type| %>
+        <div class="col">
+          <div class="card h-100 " style="background-color: lightgray;">  
+            <div class="card-body">
+              <h5 class="card-title"><strong>Name: </strong><%= room_type.name %></h5>
+              <p class="card-text">Description: <%= room_type.description %></p>
+              <p class="card-text">Price: <%= room_type.price %></p>
+              <p class="card-text">Capacity: <%= room_type.capacity %> members.</p>
+              <%= link_to "Show this service", room_type,class:'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+ 
+
+</div>

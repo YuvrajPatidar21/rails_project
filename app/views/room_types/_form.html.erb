@@ -1,0 +1,47 @@
+<div class="col-lg-6 mt-5 mx-lg-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <%= yield :add_room_type_heading %>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: room_type, class: "row") do |form| %>
+        <% if room_type.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(room_type.errors.count, "error") %> prohibited this room_type from being saved:</h2>
+
+            <ul>
+              <% room_type.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-12 mb-3">
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :price, class: 'form-label' %>
+          <%= form.text_field :price, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :description, class: 'form-label' %>
+          <%= form.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-3">
+          <%= form.label :capacity, class: 'form-label' %>
+          <%= form.number_field :capacity, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 ">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>  
+</div>
+

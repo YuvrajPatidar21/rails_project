@@ -1,0 +1,40 @@
+<div class="col-lg-auto mx-lg-auto ">
+  <div class="card shadow ">
+    <div class="card-header text-center mb-3">
+      <h1><strong>Room details</strong></h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-auto g-4 mb-5 p-3  ">
+      <div class="col">
+        <div class="card h-100 " style="background-color: lightblue;">  
+          <div class="card-body">
+            <h5 class="card-title"><strong>Room num ber: </strong><%= @room.room_number %></h5>
+            <h6 class="card-title"><strong>Hotel name: </strong><%= @room.hotel.name %></h6>
+            <p class="card-text"><strong>Room Type: </strong><%= @room.room_type.name %></p>
+            <p class="card-text"><strong>Room Description: </strong><%= @room.room_type.description %></p>
+            <p class="card-text"><strong>Room Capacity: </strong><%= @room.room_type.capacity %></p>
+            <p class="card-text"><strong>Room price: </strong><%= @room.room_type.price %></p>
+            <p class="card-text"><strong>Room Status: </strong><%= @room.status %></p>
+            <% if can? :update, @room %>
+            <%= link_to "Edit this room", edit_hotel_room_path(@hotel, @room),class:'btn btn-primary' %>
+            <% end %>
+            <%= link_to "Back to rooms", hotel_rooms_path, class:'btn btn-primary' %>
+            <% if can? :destroy, @room %>
+              <%=  link_to "Destroy this room", hotel_room_path(@hotel, @room), data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'btn btn-danger' %>
+            <% end %>
+            <% if @room.status == "vacant" %>
+              <button class="btn btn-primary">Book Room</button>
+            <% elsif @room.status == "occupied"%>
+              <div>
+                <h2>Room Allready Booked.</h2>
+              </div>
+            <% else %>
+              <div>
+                <h2>Room have some maintenance.</h2>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,7 @@
               <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Rooms</a>
+                <%= link_to "Room Type", room_types_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Booking</a>
@@ -25,18 +25,12 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Service", services_path, class: 'nav-link active' %>
               </li>
 
             <% elsif current_user.manager? %>
               <li class="nav-item active">
                 <%= link_to "Home", manager_dashboard_index_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link active " href="#">Rooms</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Booking</a>
               </li>
@@ -45,9 +39,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Service</a>
               </li>          
             <% else %>
               <li class="nav-item active">
@@ -57,18 +48,13 @@
               <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Rooms</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link active " href="#">Booking</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Payments</a>
               </li>
             <% end %>
-            <%# <li class="nav-item">
-            <%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: "nav-link active" %>
-            <%# </li> %>
+            
 
           <% else %>
           <li class="nav-item active">
@@ -76,7 +62,6 @@
           </li>
           <li class="nav-item">
             <%= link_to "About", about_path, class: "nav-link active"  %>
-            <%# <a class="nav-link active" href="#about">About</a> %>
           </li>
           <li class="nav-item">
               <%= link_to "Services", home_service_path, class: "nav-link active" %>
@@ -89,7 +74,6 @@
             </li>
             <li class="nav-item">
               <%= link_to "Contact us", contact_path, class: "nav-link active" %>
-              <%# <a class="nav-link active" href="#">Contact Us<br></a> %>
             </li> 
           <% end %>  
         </ul>
