@@ -10,9 +10,13 @@
             <h5 class="card-title"><strong>Service name: </strong><%= @service.name %></h5>
             <h6 class="card-title"><strong>Hotel name: </strong><%= @service.hotel.name %></h6>
             <p class="card-text"><strong>Description: </strong><%= @service.description %></p>
-            <%= link_to "Edit this service", edit_service_path(@service),class:'btn btn-primary' %>
-            <%= link_to "Back to services", services_path,class:'btn btn-primary' %>
-            <%=  link_to "Destroy this service", @service, data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+            <% if can? :update, @service %>
+              <%= link_to "Edit this service", edit_hotel_service_path(@hotel, @service),class:'btn btn-primary' %>
+            <% end %>
+            <%= link_to "Back to services", hotel_services_path,class:'btn btn-primary' %>
+            <% if can? :destroy, @service %>
+              <%=  link_to "Destroy this service", hotel_service_path(@hotel, @service), data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+            <% end %>
           </div>
         </div>
       </div>

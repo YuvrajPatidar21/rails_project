@@ -1,0 +1,11 @@
+<% content_for :add_room_type_heading do  %>
+  <h2 class="card-title text-center ">Add New Room Type</h2>
+<% end %>
+
+<%= render "form", room_type: @room_type %>
+
+<br>
+
+<div class="lg-6 mt-5 mx-lg-auto text-center ">
+  <%= link_to "Back to room types", room_types_path %>
+</div>

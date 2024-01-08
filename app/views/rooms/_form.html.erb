@@ -1,0 +1,42 @@
+<div class="col-lg-12 mx-lg-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <h2 class="card-title text-center "><%= yield :add_room_type_heading %></h2>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: [@hotel, @room], local: true, class: 'row') do |form| %>
+        <% if room.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+            <ul>
+              <% room.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-12 mb-2">
+          <%= form.label :room_number, class: 'form-label' %>
+          <%= form.text_field :room_number, class: 'form-control' %>
+        </div>
+
+        <div class="col-12 mb-2">
+          <%= form.label :status, class:'form-label' %>
+          <%= form.select :status, Room.statuses.keys.map { |status| [status, status] }, {},class: 'form-select' %>
+        </div>
+
+        <div class="col-12 mb-2">
+          <%= form.label :room_type_id, 'Select Room type', class: 'form-label'  %>
+          <%= form.collection_select :room_type_id, RoomType.all, :id, :name, {}, class:'form-select' %>
+        </div>
+
+        <div class="col-12">
+          <%= form.submit class:'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
