@@ -66,6 +66,6 @@ class ServicesController < ApplicationController
       @service = @hotel.services.find(params[:id])
     end
     def service_params
-      params.require(:service).permit(:name, :description)
+      params.require(:service).permit(:name, :description, :service_picture)
     end
 end

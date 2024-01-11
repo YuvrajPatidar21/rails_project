@@ -1,7 +1,11 @@
 <div class="card mt-5" style="max-width: auto;">
   <div class="row g-0">
     <div class="col-md-4">
-      <%= image_tag 'portfolio/portfolio-3.jpg', style:'height: 250px; width: auto;' %>
+      <% if @hotel.hotel_pictures.attached? %>
+            <%= image_tag @hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
+          <% else %>
+              <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;"%>
+          <% end %>
     </div>
     <div class="col">
       <div class="card-body">
@@ -18,38 +22,44 @@
         <% if can? :destroy, @hotel %>
           <%= link_to "Destroy this hotel", @hotel, data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete?" }, class: 'btn btn-danger' %>
         <% end %>
+
         <%= link_to "Show room", hotel_rooms_path(@hotel), class:'btn btn-warning' %>
         <%= link_to "Back to hotels", hotels_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card shadow">
-    <div class="card-header text-center mb-2  ">
-      <h1><strong>All Services of <%= @hotel.name %></strong></h1>
+<div class="card shadow mt-2">
+  <div class="card-header text-center mb-2  ">
+    <h1><strong>All Services of <%= @hotel.name %></strong></h1>
+  </div>
+
+  <% if can? :create, Room %>
+    <div>
+      <%= link_to "New Service", new_hotel_service_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>
     </div>
-
-    <% if can? :create, @service %>
-      <div>
-        <%= link_to "New Service", new_hotel_service_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>
-      </div>
-    <% end %>
-    <% if @services.empty? %>
-      <h1>Now! Hotel have no services.</h1>
-    <% else %>    
-      <div class="row row-cols-2 row-cols-md-4 g-4 mb-5 ">
-        <% @services.each do |service| %>
-          <div class="col">
-            <div class="card h-100 " style="background-color: lightgray;">  
-              <div class="card-body">
-                <h5 class="card-title"><strong><%= service.name %></strong></h5>
-                <p class="card-text"><%= service.description %></p>
-                <%= link_to "Show this service", hotel_service_path(@hotel, service),class:'btn btn-primary' %>
-              </div>
+  <% end %>
+  <% if @services.empty? %>
+    <h1>Now! Hotel have no services.</h1>
+  <% else %>    
+    <div class="row row-cols-2 row-cols-md-3 g-4 mb-5 ">
+      <% @services.each do |service| %>
+        <div class="col">
+          <div class="card h-100 shadow " style="background-color: lightgray;">
+             <% if service.service_picture.attached? %>
+              <%= image_tag service.service_picture, alt: 'service_picture', class: 'card-img-top', style: "width: auto; height: 300px;" %>
+            <% else %>
+                <%= image_tag "service/default_service_image", class: 'card-img', style: "width: auto; height: 300px;" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= service.name %></strong></h5>
+              <p class="card-text"><%= service.description[0, 40] %>....</p>
+              <%= link_to "More Detail", hotel_service_path(@hotel, service),class:'btn btn-primary' %>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

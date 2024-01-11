@@ -9,7 +9,7 @@
         <div class="card mb-4">
           <div class="card-body text-center">
             <% if current_user.profile_picture.attached? %>
-              <%= image_tag current_user.profile_picture, alt: 'avatar', class: 'rounded-circle img-fluid', style: 'width: 150px;' %>
+              <%= image_tag current_user.profile_picture, alt: 'avatar', class: 'rounded-circle img-fluid', style: 'width: 200px; height: 200px' %>
             <% else %>
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">  
@@ -19,10 +19,7 @@
             <p class="text-muted mb-4"><strong>Address: </strong><%= current_user.address %>, <%= current_user.city %>, <%= current_user.state %>, <%= current_user.zipcode %></p>
             <div class="d-flex justify-content-center mb-2">
               <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-primary m-2' %> 
-
-              <%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: 'btn btn-danger m-2' %>
-              <%# <button type="button" class="btn btn-primary">Follow</button> %>
-              
+              <%= link_to "Log Out",destroy_user_session_path, 'data-turbo-method': :delete, class: 'btn btn-danger m-2' %>              
             </div>
           </div>
         </div>

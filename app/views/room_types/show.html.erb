@@ -1,22 +1,24 @@
-<div class="col-lg-auto mx-lg-auto ">
-  <div class="card shadow ">
-    <div class="card-header text-center mb-3">
-      <h1><strong>Room type</strong></h1>
+<div class="card text-center mb-3">
+  <h1><strong>Room type</strong></h1>
+</div>
+<div class="card mb-3 shadow" style="max-width: auto;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <% if @room_type.rooms_type_picture.attached? %>
+        <%= image_tag @room_type.rooms_type_picture, alt: 'rooms_type_picture', class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% else %>
+        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% end %>
     </div>
-    <div class="row row-cols-1 row-cols-md-auto g-4 mb-5 p-3  ">
-      <div class="col">
-        <div class="card h-100 " style="background-color: lightgray;">  
-          <div class="card-body">
-            <h5 class="card-title"><strong>Room type: </strong><%= @room_type.name %></h5>
-            <h6 class="card-title"><strong>Description: </strong><%= @room_type.description%></h6>
-            <p class="card-text"><strong>Capacity: </strong><%= @room_type.capacity %> members.</p>
-            <p class="card-text"><strong>Price: </strong><%= @room_type.price %></p>
-            <%= link_to "Edit this room type", edit_room_type_path(@room_type), class:'btn btn-primary' %>
-            <%= link_to "Back to room types", room_types_path, class:'btn btn-primary' %>
-            <%= button_to "Destroy this room type", @room_type, method: :delete, class: 'btn btn-danger mt-3' %>
-            
-          </div>
-        </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Room type: </strong><%= @room_type.name %></h5>
+        <h6 class="card-title"><strong>Description: </strong><%= @room_type.description%></h6>
+        <p class="card-text"><strong>Capacity: </strong><%= @room_type.capacity %> members.</p>
+        <p class="card-text"><strong>Price: </strong><%= @room_type.price %></p>
+        <%= link_to "Edit this room type", edit_room_type_path(@room_type), class:'btn btn-primary' %>
+        <%= link_to "Back to room types", room_types_path, class:'btn btn-primary' %>
+        <%= button_to "Destroy this room type", @room_type, method: :delete, class: 'btn btn-danger mt-3' %>
       </div>
     </div>
   </div>

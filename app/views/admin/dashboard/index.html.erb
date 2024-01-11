@@ -1,1 +1,26 @@
 <%= render 'shared/stat_cart' %>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+  <% @hotels.each do |hotel| %>
+    <div class="col">
+      <div class="card h-100 ">
+        <% if hotel.hotel_pictures.attached? %>
+          <%= image_tag hotel.hotel_pictures.sample, alt: 'room_picture', class: 'card-img-top shadow', style: "width: auto; height: 300px;"%>
+        <% else %>
+          <%= image_tag "room_type/default_room_image", class: 'card-img-top', style: "width: auto; height: 350px;"%>
+        <% end %>
+        
+        <div class="card-body">
+          <h5 class="card-title"><strong>Hotel name: </strong><%= hotel.name %></h5>
+          <h5 class="card-title"><strong>Hotel Name: </strong><%= hotel.name %></h5>
+          <p class="card-text"><strong>Email: </strong><%= hotel.email %></p>
+          <p class="card-text"><strong>Tele-Phone: </strong><%= hotel.telephone %></p>
+          <p class="card-text"><strong>Location: </strong><%= hotel.location %></p>
+          <p class="card-text"><strong>City: </strong><%= hotel.city %></p>
+          <p class="card-text"><strong>State: </strong><%= hotel.state %></p>
+          <p class="card-text"><strong>Zipcode: </strong><%= hotel.zipcode %></p>
+          <%= link_to "Book", hotel, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

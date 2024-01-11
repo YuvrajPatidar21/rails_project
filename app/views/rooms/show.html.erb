@@ -1,13 +1,18 @@
-<div class="col-lg-auto mx-lg-auto ">
-  <div class="card shadow ">
-    <div class="card-header text-center mb-3">
-      <h1><strong>Room details</strong></h1>
+<div class="card text-center mb-3">
+  <h1><strong>Room Details</strong></h1>
+</div>
+<div class="card mb-3 shadow" style="max-width: auto;">
+  <div class="row g-0 justify-content-between">
+    <div class="col-md-4 shadow">
+      <% if @room.room_pictures.attached? %>
+        <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 500px; height: 400px;" %>
+      <% else %>
+        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% end %>
     </div>
-    <div class="row row-cols-1 row-cols-md-auto g-4 mb-5 p-3  ">
-      <div class="col">
-        <div class="card h-100 " style="background-color: lightblue;">  
-          <div class="card-body">
-            <h5 class="card-title"><strong>Room num ber: </strong><%= @room.room_number %></h5>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Room num ber: </strong><%= @room.room_number %></h5>
             <h6 class="card-title"><strong>Hotel name: </strong><%= @room.hotel.name %></h6>
             <p class="card-text"><strong>Room Type: </strong><%= @room.room_type.name %></p>
             <p class="card-text"><strong>Room Description: </strong><%= @room.room_type.description %></p>
@@ -22,6 +27,7 @@
               <%=  link_to "Destroy this room", hotel_room_path(@hotel, @room), data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'btn btn-danger' %>
             <% end %>
             <% if @room.status == "vacant" %>
+              <%# <%= link_to "Book Room", new_hotel_room_booking_path(@room.hotel, @room), class: 'btn btn-primary' %>
               <button class="btn btn-primary">Book Room</button>
             <% elsif @room.status == "occupied"%>
               <div>
@@ -32,8 +38,6 @@
                 <h2>Room have some maintenance.</h2>
               </div>
             <% end %>
-          </div>
-        </div>
       </div>
     </div>
   </div>
