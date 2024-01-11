@@ -1,24 +1,27 @@
-<div class="col-lg-auto mx-lg-auto ">
-  <div class="card shadow ">
-    <div class="card-header text-center mb-3">
-      <h1><strong>Service</strong></h1>
+<div class="card text-center mb-3">
+  <h1><strong>Service</strong></h1>
+</div>
+<div class="card mb-3 shadow" style="max-width: auto;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <% if @service.service_picture.attached? %>
+        <%= image_tag @service.service_picture, alt: 'service_picture', class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% else %>
+        <%= image_tag "service/default_service_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% end %>
     </div>
-    <div class="row row-cols-1 row-cols-md-auto g-4 mb-5 p-3  ">
-      <div class="col">
-        <div class="card h-100 " style="background-color: lightgray;">  
-          <div class="card-body">
-            <h5 class="card-title"><strong>Service name: </strong><%= @service.name %></h5>
-            <h6 class="card-title"><strong>Hotel name: </strong><%= @service.hotel.name %></h6>
-            <p class="card-text"><strong>Description: </strong><%= @service.description %></p>
-            <% if can? :update, @service %>
-              <%= link_to "Edit this service", edit_hotel_service_path(@hotel, @service),class:'btn btn-primary' %>
-            <% end %>
-            <%= link_to "Back to services", hotel_services_path,class:'btn btn-primary' %>
-            <% if can? :destroy, @service %>
-              <%=  link_to "Destroy this service", hotel_service_path(@hotel, @service), data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:'btn btn-danger' %>
-            <% end %>
-          </div>
-        </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Service name: </strong><%= @service.name %></h5>
+        <h6 class="card-title"><strong>Hotel name: </strong><%= @service.hotel.name %></h6>
+        <p class="card-text"><strong>Description: </strong><%= @service.description %></p>
+        <% if can? :update, @service %>
+          <%= link_to "Edit this service", edit_hotel_service_path(@hotel, @service),class:'btn btn-primary' %>
+        <% end %>
+        <%= link_to "Back to services", hotel_services_path,class:'btn btn-primary' %>
+        <% if can? :destroy, @service %>
+          <%=  link_to "Destroy this service", hotel_service_path(@hotel, @service), data:{ turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+        <% end %>
       </div>
     </div>
   </div>

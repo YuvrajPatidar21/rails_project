@@ -27,6 +27,11 @@
           <%= form.text_area :description, class: 'form-control' %>
         </div>
 
+        <div class="col-12 mb-3">
+          <%= form.label :service_picture, class: 'form-label' %>
+          <%= form.file_field :service_picture, class: 'form-control' %>
+        </div>
+
         <div class="col-12">
           <%= form.submit class: 'btn btn-primary' %>
         </div>

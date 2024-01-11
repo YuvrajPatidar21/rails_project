@@ -1,41 +1,36 @@
-<div class="container mt-4">
-  <p style="color: green"><%= notice %></p>
-  <h2>All Hotels</h2>
+<div class="card shadow">
+  <div class="card-header text-center mb-2  ">
+    <h1><strong>All Hotels</strong></h1>
+  </div>
+
   <% if can? :create, Hotel %>
     <div>
       <%= link_to "New hotel", new_hotel_path, class: 'btn btn-primary mb-3 end-0' %>
     </div>
+  <% end %>   
+  <% @hotels.each do |hotel| %>
+    <div class="card mb-3 shadow" style="max-width: auto;">
+      <div class="row g-0 justify-content-between" >
+        <div class="col-md-5 ">
+          <% if hotel.hotel_pictures.attached? %>
+            <%= image_tag hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
+          <% else %>
+              <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;"%>
+          <% end %>
+        </div>
+        <div class="col-md-4 ">
+          <div class="card-body ">
+            <h5 class="card-title"><strong>Hotel Name: </strong><%= hotel.name %></h5>
+            <p class="card-text"><strong>Email: </strong><%= hotel.email %></p>
+            <p class="card-text"><strong>Tele-Phone: </strong><%= hotel.telephone %></p>
+            <p class="card-text"><strong>Location: </strong><%= hotel.location %></p>
+            <p class="card-text"><strong>City: </strong><%= hotel.city %></p>
+            <p class="card-text"><strong>State: </strong><%= hotel.state %></p>
+            <p class="card-text"><strong>Zipcode: </strong><%= hotel.zipcode %></p>
+            <%= link_to "Book", hotel, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered">
-      <thead class="table-primary">
-        <tr>          
-          <th>Name</th>
-          <th>Email</th>
-          <th>Tele-Phone</th>
-          <th>Location</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zipcode</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody> 
-        <% @hotels.each do |hotel| %>
-          <tr>
-            <td><%= hotel.name %></td>
-            <td><%= hotel.email %></td>
-            <td><%= hotel.telephone %></td>
-            <td><%= hotel.location %></td>
-            <td><%= hotel.city %></td>
-            <td><%= hotel.state %></td>
-            <td><%= hotel.zipcode %></td>
-            <td><%= link_to hotel do %>
-              <i class="fas fa-eye fa-2x"></i>
-              <% end %> 
-        <% end %>
-      </tbody>
-    </table>
-  </div>
 </div>
-
