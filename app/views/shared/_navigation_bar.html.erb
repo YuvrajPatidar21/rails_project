@@ -9,7 +9,7 @@
           <% if current_user %>
             <% if current_user.admin? %>
               <li class="nav-item active">
-                <%= link_to "Home", admin_dashboard_index_path, class:'nav-link active' %>
+                <%= link_to "Dashboard", admin_dashboard_index_path, class:'nav-link active' %>
               </li>
               <li class="nav-item dropdown ">
               <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
@@ -18,18 +18,19 @@
                 <%= link_to "Room Type", room_types_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Booking</a>
+                <%= link_to "All Booking", display_booking_path, class: 'nav-link active' %>
+                <%# <a class="nav-link active" href="#">All Booking</a> %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Payments</a>
+                <a class="nav-link active " href="#">All Payments</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Users</a>
+                <a class="nav-link active " href="#">All Users</a>
               </li>
 
             <% elsif current_user.manager? %>
               <li class="nav-item active">
-                <%= link_to "Home", manager_dashboard_index_path, class:'nav-link active' %>
+                <%= link_to "Dashboard", manager_dashboard_index_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
                 <a class="nav-link active " href="#">Booking</a>
@@ -42,30 +43,28 @@
               </li>          
             <% else %>
               <li class="nav-item active">
-                <%= link_to "Home", customer_dashboard_index_path, class:'nav-link active' %>
+                <%= link_to "Dashboard", customer_dashboard_index_path, class:'nav-link active' %>
               </li>
               <li class="nav-item dropdown ">
               <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Booking</a>
+                <%= link_to "My Booking", display_booking_path, class: 'nav-link active' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link active " href="#">Payments</a>
+                <a class="nav-link active " href="#">My Payments</a>
               </li>
             <% end %>
-            
-
           <% else %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path, class:'nav-link active' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", about_path, class: "nav-link active"  %>
-          </li>
-          <li class="nav-item">
-              <%= link_to "Services", home_service_path, class: "nav-link active" %>
-          </li>
+            <li class="nav-item active">
+              <%= link_to "Home", root_path, class:'nav-link active' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: "nav-link active"  %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Services", home_service_path, class: "nav-link active" %>
+            </li>
             <li class="nav-item">
               <%= link_to "Login", new_user_session_path, class: "nav-link active"  %>
             </li>

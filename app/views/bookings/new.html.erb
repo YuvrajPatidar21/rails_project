@@ -1,0 +1,11 @@
+<%= content_for :add_booking_heading do %>
+  <h2 class="card-title text-center ">Boor Room</h2>
+<% end %>
+
+<%= render "form", booking: @booking %>
+
+<br>
+
+<div>
+  <%= link_to "Back to bookings", hotel_room_bookings_path(@room.hotel, @room) %>
+</div>

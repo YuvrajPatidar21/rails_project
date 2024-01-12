@@ -1,0 +1,62 @@
+<div class="col-lg-12 mx-lg-auto"></div>
+  <div class="card shadow">
+    <div class="card-header">
+      <h2 class="card-title text-center "><%= yield :add_booking_heading %></h2>
+    </div>
+
+    <div class="text m-4">
+      <h3><strong>Your Room Details</strong></h3>
+    </div>
+    <div class="card mb-3 shadow" style="max-width: auto;">
+  <div class="row g-0">
+    <div class="col-md-4 shadow">
+      <% if @room.room_pictures.attached? %>
+        <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% else %>
+        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Room num ber: </strong><%= @room.room_number %></h5>
+        <h6 class="card-title"><strong>Hotel name: </strong><%= @room.hotel.name %></h6>
+        <p class="card-text"><strong>Room Type: </strong><%= @room.room_type.name %></p>
+        <p class="card-text"><strong>Room Description: </strong><%= @room.room_type.description %></p>
+        <p class="card-text"><strong>Room Capacity: </strong><%= @room.room_type.capacity %></p>
+        <p class="card-text"><strong>Room price: </strong><%= @room.room_type.price %></p>
+        <p class="card-text"><strong>Room Status: </strong><%= @room.status %></p>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="card-body">
+      <%= form_with(model: [@hotel, @room, @booking], url: [@room.hotel, @room, @booking], class: 'row') do |form| %>
+        <% if booking.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+            <ul>
+              <% booking.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-md-6 mb-3">
+          <%= form.label :start_date, class: "form-label"%>
+          <%= form.date_field :start_date, class: "form-control" %>
+        </div>
+
+        <div class="col-md-6  mb-3">
+          <%= form.label :end_date, class: 'form-label' %>
+          <%= form.date_field :end_date, class: 'form-control' %>
+        </div>
+
+        <div class="col">
+          <%= form.submit class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

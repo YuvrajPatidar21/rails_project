@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_and_belongs_to_many :hotels
-  has_one_attached :profile_picture
+  has_one_attached :picture
+  has_many :bookings
+  has_many :rooms, through: :bookings
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, 
@@ -21,8 +23,12 @@ class User < ApplicationRecord
   validate :validate_date_of_birth
   validates :status, presence: true
   validates :city, presence: true
-  
   validates :zipcode, presence: true, numericality: { only_integer: true}
+  
+  after_create do
+    WelcomeMailer.send_greetings_notification(self).deliver_now
+  end
+
 
   enum role: [:customer, :manager, :admin]
     
@@ -33,10 +39,12 @@ class User < ApplicationRecord
   end    
 
   private
+
   def after_confirmation
     WelcomeMailer.send_greetings_notification(self)
                  .deliver_now
   end
+
   def validate_date_of_birth
     if date_of_birth.present? && date_of_birth > Date.current 
       errors.add(:date_of_birth, 'must be in the past')

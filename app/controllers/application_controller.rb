@@ -9,5 +9,9 @@ class ApplicationController < ActionController::Base
     else
       customer_dashboard_index_path # Default redirect for other users
     end
-  end  
+  end 
+
+  def after_update_path_for(resource)
+    profile_path
+  end
 end

@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+<div class="card text-light text-center lg-auto shadow bg-primary">
+  <h1>Bookings</h1>
+</div>
+<div class="card shadow mt-3">
+  <div class="card-header">
+    <%= link_to "New booking", new_hotel_room_booking_path(@room.hotel, @room), class: 'btn btn-primary' %>
+  </div>
+  
+  <div class="card text-center mb-3">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>Guests</th>
+          <th>Hotel</th>
+          <th>Room</th>
+          <th>Price / Day</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Total Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.user.name %></td>
+            <td><%= booking.room.hotel.name %></td>
+            <td><%= booking.room.room_type.name %></td>
+            <td><%= booking.room.room_type.price %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td><%= ((booking.end_date.to_date - booking.start_date.to_date).to_i+1) * (booking.room.room_type.price) %></td>
+            <td><%= booking.status %></td>
+            <td><%= link_to "Show booking details", hotel_room_booking_path(@room.hotel, @room, booking), class:'btn btn-info' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
