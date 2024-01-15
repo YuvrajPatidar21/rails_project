@@ -1,7 +1,40 @@
 <p style="color: green"><%= notice %></p>
+<div class="card shadow text-center bg-primary text-light mt-4 mb-4 col-md-6 mx-auto">
+  <h2>Payment detail</h2>
+</div>
 
-<%= render @payment %>
+<table class="table table-responsive">
+  <thead class="table-primary text-center">
+    <tr>
+      <th>Hotel Name</th>
+      <th>Room Number</th>
+      <th>Room Type</th>
+      <th>Room Price ( per day )</th>
+      <th>Capacity ( Member )</th>
+      <th>Check-in Date</th>
+      <th>Check-out Date</th>
+      <th>Total Price</th>
+      <th>Invoice</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr>
+      <td><%= @payment.booking.room.hotel.name %></td>
+      <td><%= @payment.booking.room.room_number %></td>
+      <td><%= @payment.booking.room.room_type.name %></td>
+      <td><%= @payment.booking.room.room_type.price %></td>
+      <td><%= @payment.booking.room.room_type.capacity %></td>
+      <td><%= @payment.booking.start_date %></td>
+      <td><%= @payment.booking.end_date %></td>
+      <td><%= @payment.amount %></td>
+      <td><%= link_to do %>
+        <i class="fa-solid fa-receipt"></i>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<div>
-  <%= link_to "Back to payment", booking_payments_path(@booking) %>
+<div class="text center">
+  <%= link_to "See Booking deatils", hotel_room_booking_path(@booking.room.hotel, @booking.room, @booking), class: "btn btn-primary" %>
 </div>

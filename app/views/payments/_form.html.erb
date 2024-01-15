@@ -1,8 +1,39 @@
-<div class="col-lg-12 mx-lg-auto"></div>
+<div class="col-lg-12 mx-lg-auto">
   <div class="card shadow">
     <div class="card-header">
       <h2 class="card-title text-center ">Make Payment</h2>
     </div>
+
+    <div class="text m-4">
+      <h3><strong>Your Payment Details</strong></h3>
+    <div class="card mb-3 shadow" style="max-width: auto;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <% if @booking.room.room_pictures.attached? %>
+        <%= image_tag @booking.room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 500px; height: 300px;" %>
+      <% else %>
+        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Room num ber: </strong><%= @booking.room.room_number %></h5>
+        <h6 class="card-title"><strong>Hotel name: </strong><%= @booking.room.hotel.name %></h6>
+        <p class="card-text"><strong>Room Type: </strong><%= @booking.room.room_type.name %></p>
+        <p class="card-text"><strong>Room Description: </strong><%= @booking.room.room_type.description %></p>
+        <p class="card-text"><strong>Room Capacity: </strong><%= @booking.room.room_type.capacity %></p>
+        <p class="card-text"><strong>Room price: </strong><%= @booking.room.room_type.price %></p>
+        <p class="card-text"><strong>Check-in Date: </strong><%= @booking.start_date %></p>
+        <p class="card-text"><strong>Check-out Date: </strong><%= @booking.end_date %></p>
+        <p class="card-text"><strong>Total amount: </strong><%= @payment.amount %></p>
+        <p class="card-text"><strong>Booking Status: </strong><%= @booking.status %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-12 mx-lg-auto"></div>
+  <div class="card shadow">
     <div class="card-body">
       <%= form_with(model: [@booking, payment], class: 'row') do |form| %>
         <% if payment.errors.any? %>

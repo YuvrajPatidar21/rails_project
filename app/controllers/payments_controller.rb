@@ -2,15 +2,16 @@ class PaymentsController < ApplicationController
   before_action :set_booking
   before_action :set_payment, only: %i[ show ]
 
-  def index
-    @payment = @booking.payment
-  end
+  # def index
+  #   @ = @booking.payment
+  # end
 
   def show
   end
 
   def new
     @payment = @booking.build_payment
+    @payment.amount = @booking.calculate_amount
   end
 
   def create
