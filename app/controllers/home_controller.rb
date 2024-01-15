@@ -1,17 +1,17 @@
 class HomeController < ApplicationController
   layout "home"
   def index
-    
   end
+  
   def about
-
   end
+  
   def home_service
-    
   end
+  
   def profile
-    
   end
+
   def contact
     @contact = Contact.new
   end
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
 
   private
 
-  def contact_params
-    params.require(:contact).permit(:name, :email, :subject ,:message)
-  end
+    def contact_params
+      params.require(:contact).permit(:name, :email, :subject ,:message)
+    end
 end

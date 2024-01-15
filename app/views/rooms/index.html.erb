@@ -2,13 +2,11 @@
   <div class="card-header text-center mb-2  ">
     <h1><strong>All Rooms</strong></h1>
   </div>
-
   <% if can? :create, Room %>
     <div>
       <%= link_to "New room", new_hotel_room_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>
     </div>
   <% end %>
-  
   <% if @rooms.empty? %>
     <h1>Now! Hotel have no room.</h1>
   <% else %>    

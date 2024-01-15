@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :room_types
   
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -14,10 +13,17 @@ Rails.application.routes.draw do
   get 'home_service', to: 'home#home_service'
   get 'contact', to: 'home#contact'
   post 'contact', to: 'home#process_contact', as: 'process_contact'
-  resources :hotels do
+  get 'display_booking', to: 'bookings#display_booking', as: 'display_booking'
+  resources :hotels do 
     resources :services
-    resources :rooms
+    resources :rooms do
+      resources :bookings
+    end
   end
+  resources :bookings do
+    resources :payments, only: [:index, :show, :new, :create]
+  end
+  resources :room_types
   namespace :admin do
     resources :dashboard, only: [:index]
   end
@@ -27,12 +33,4 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :dashboard, only: [:index]
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  # get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

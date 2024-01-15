@@ -8,7 +8,6 @@
         <% if room_type.errors.any? %>
           <div style="color: red">
             <h2><%= pluralize(room_type.errors.count, "error") %> prohibited this room_type from being saved:</h2>
-
             <ul>
               <% room_type.errors.each do |error| %>
                 <li><%= error.full_message %></li>
@@ -16,32 +15,26 @@
             </ul>
           </div>
         <% end %>
-
         <div class="col-12 mb-3">
           <%= form.label :name, class: 'form-label' %>
           <%= form.text_field :name, class: 'form-control' %>
         </div>
-
         <div class="col-12 mb-3">
           <%= form.label :price, class: 'form-label' %>
           <%= form.text_field :price, class: 'form-control' %>
         </div>
-
         <div class="col-12 mb-3">
           <%= form.label :description, class: 'form-label' %>
           <%= form.text_area :description, class: 'form-control' %>
         </div>
-
         <div class="col-12 mb-3">
           <%= form.label :capacity, class: 'form-label' %>
           <%= form.number_field :capacity, class: 'form-control' %>
         </div>
-        
         <div class="col-12 mb-3">
           <%= form.label :rooms_type_picture, class: "form-label" %>
           <%= form.file_field :rooms_type_picture, class: 'form-control' %>
         </div>
-
         <div class="col-12 ">
           <%= form.submit class: 'btn btn-primary' %>
         </div>
