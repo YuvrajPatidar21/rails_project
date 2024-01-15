@@ -16,27 +16,22 @@
             </ul>
           </div>
         <% end %>
-
         <div class="col-md-6 mb-3">
           <%= form.label :card_holder_name, class: "form-label" %>
           <%= form.text_field :card_holder_name, class: "form-control" %>
         </div>
-        
         <div class="col-md-6 mb-3">
           <%= form.label :bank_name, class: "form-label" %>
           <%= form.text_field :bank_name,class:"form-control" %>
         </div>
-
         <div class="col-md-6 mb-3">
           <%= form.label :card_number, class: "form-label" %>
           <%= form.text_field :card_number, class: "form-control" %>
         </div>
-
         <div class="col-md-6 mb-3">
           <%= form.label :cvv, class: "form-label" %>
           <%= form.number_field :cvv, class: "form-control" %>
         </div>
-
         <div class="col" >
           <%= form.submit "Pay", class: "btn btn-primary" %>
         </div>

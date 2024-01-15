@@ -3,7 +3,7 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: %i[ show edit update destroy ]
 
   def index
-      @hotels = Hotel.all
+    @hotels = Hotel.all
   end
 
   def show

@@ -27,7 +27,6 @@
               <li class="nav-item">
                 <a class="nav-link active " href="#">All Users</a>
               </li>
-
             <% elsif current_user.manager? %>
               <li class="nav-item active">
                 <%= link_to "Dashboard", manager_dashboard_index_path, class:'nav-link active' %>

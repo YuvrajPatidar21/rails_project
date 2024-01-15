@@ -2,7 +2,6 @@
   <div class="card-header text-center mb-2  ">
     <h1><strong>All Services of <%= @hotel.name %></strong></h1>
   </div>
-
   <% if can? :create, Room %>
     <div>
       <%= link_to "New Service", new_hotel_service_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>

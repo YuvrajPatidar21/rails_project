@@ -6,10 +6,11 @@ class Payment < ApplicationRecord
 
   private
 
-  def mark_booking_status
-    booking.update(status: 'Booked')
-  end
-  def mark_room_status
-    booking.room.update(status: 'Booked')
-  end
+    def mark_booking_status
+      booking.update(status: 'Booked')
+    end
+    
+    def mark_room_status
+      booking.room.update(status: 'Booked')
+    end
 end

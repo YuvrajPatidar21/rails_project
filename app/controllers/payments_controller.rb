@@ -22,14 +22,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   if @payment.destroy!
-  #     redirect_to booking_payments_path, notice: "Payment was successfully cancled."
-  #   else
-  #     redirect_to booking_payment_path, notice: "Payment was not successfully cancled."
-  #   end
-  # end
-
   private
     def set_booking
       @booking = Booking.find_by(id: params[:booking_id])

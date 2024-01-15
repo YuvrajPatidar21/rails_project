@@ -2,10 +2,10 @@
   <div class="row g-0">
     <div class="col-md-4">
       <% if @hotel.hotel_pictures.attached? %>
-            <%= image_tag @hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
-          <% else %>
-              <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;"%>
-          <% end %>
+        <%= image_tag @hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
+      <% else %>
+        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;"%>
+      <% end %>
     </div>
     <div class="col">
       <div class="card-body">
@@ -13,28 +13,23 @@
         <h4 class='card-title'><strong>Email: </strong><%= @hotel.email %></h4>
         <h4 class='card-title'><strong>Telephone: </strong><%= @hotel.telephone %></h4>
         <p class='card-title'><strong>Location: </strong><%= @hotel.location %> <strong>City: </strong><%= @hotel.city %> <strong>State: </strong> <%= @hotel.state %> <strong>Zipcode: </strong><%= @hotel.zipcode %>.</p>
-
         <p class="card-text"><strong>Description: </strong><%= @hotel.description %></p>
         <% if can? :update, @hotel %>
           <%= link_to "Edit this hotel", edit_hotel_path(@hotel), class: 'btn btn-success' %>
         <% end %>
-
         <% if can? :destroy, @hotel %>
           <%= link_to "Destroy this hotel", @hotel, data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete?" }, class: 'btn btn-danger' %>
         <% end %>
-
         <%= link_to "Show room", hotel_rooms_path(@hotel), class:'btn btn-warning' %>
         <%= link_to "Back to hotels", hotels_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
 </div>
-
 <div class="card shadow mt-2">
   <div class="card-header text-center mb-2  ">
     <h1><strong>All Services of <%= @hotel.name %></strong></h1>
   </div>
-
   <% if can? :create, Room %>
     <div>
       <%= link_to "New Service", new_hotel_service_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>

@@ -1,42 +1,40 @@
-<div class="col-lg-12 mx-lg-auto"></div>
-  <div class="card shadow m-3">
-    <div class="card-header">
-      <h2 class="card-title text-center ">Your Booking details</h2>
-      <p style="color: green"><%= notice %></p>
-    </div>
-  
-    <div class="card mb-3 shadow" style="max-width: auto;">
-      <div class="row g-0">
-        <div class="col-md-7">
-          <% if @room.room_pictures.attached? %>
-            <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 700px; height: 400px;" %>
-          <% else %>
-            <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
-          <% end %>
-        </div>
-        <div class="col-md-5">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Room num ber: </strong><%= @booking.room.room_number %></h5>
-            <h6 class="card-title"><strong>Hotel name: </strong><%= @booking.room.hotel.name %></h6>
-            <p class="card-text"><strong>Room Type: </strong><%= @booking.room.room_type.name %></p>
-            <p class="card-text"><strong>Room Description: </strong><%= @booking.room.room_type.description %></p>
-            <p class="card-text"><strong>Room Capacity: </strong><%= @booking.room.room_type.capacity %></p>
-            <p class="card-text"><strong>Room price: </strong>Rs. <%= @booking.room.room_type.price %> /day</p>
-            <p class="card-text"><strong>Room Status: </strong><%= @booking.room.status %></p>
-            <p class="card-text"><strong>Check-in Date: </strong><%= @booking.start_date %></p>
-            <p class="card-text"><strong>Check-out Date: </strong><%= @booking.end_date %></p>
-            <p class="card-text"><strong>Total Amount: </strong>Rs. <%= ((@booking.end_date.to_date - @booking.start_date.to_date).to_i+1) * (@booking.room.room_type.price) %></p>
-            <p class="card-text"><strong>Booking Status:</strong><%= @booking.status %></p>
-          </div>
-        </div>
-      </div>
-      <div class="col mt-3 mb-3 p-3">
-        <%= link_to "Edit this booking", edit_hotel_room_booking_path(@booking), class: 'btn btn-success' %>
-        <%= link_to "Back to bookings", hotel_room_bookings_path(@room.hotel, @room), class: 'btn btn-primary' %>
-        <%= link_to "Cancle booking", hotel_room_booking_path(@booking), data: {turbo_method: :delete}, class: 'btn btn-danger' %>
-        <% if @booking.status == "Pending" %>
-          <%= link_to "Make Payment", new_booking_payment_path(@booking), class: 'btn btn-success' %>
+<div class="card shadow m-3">
+  <div class="card-header">
+    <h2 class="card-title text-center ">Your Booking details</h2>
+    <p style="color: green"><%= notice %></p>
+  </div>  
+  <div class="card mb-3 shadow" style="max-width: auto;">
+    <div class="row g-0">
+      <div class="col-md-7">
+        <% if @room.room_pictures.attached? %>
+          <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 700px; height: 400px;" %>
+        <% else %>
+          <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
         <% end %>
       </div>
+      <div class="col-md-5">
+        <div class="card-body">
+          <h5 class="card-title"><strong>Room num ber: </strong><%= @booking.room.room_number %></h5>
+          <h6 class="card-title"><strong>Hotel name: </strong><%= @booking.room.hotel.name %></h6>
+          <p class="card-text"><strong>Room Type: </strong><%= @booking.room.room_type.name %></p>
+          <p class="card-text"><strong>Room Description: </strong><%= @booking.room.room_type.description %></p>
+          <p class="card-text"><strong>Room Capacity: </strong><%= @booking.room.room_type.capacity %></p>
+          <p class="card-text"><strong>Room price: </strong>Rs. <%= @booking.room.room_type.price %> /day</p>
+          <p class="card-text"><strong>Room Status: </strong><%= @booking.room.status %></p>
+          <p class="card-text"><strong>Check-in Date: </strong><%= @booking.start_date %></p>
+          <p class="card-text"><strong>Check-out Date: </strong><%= @booking.end_date %></p>
+          <p class="card-text"><strong>Total Amount: </strong>Rs. <%= ((@booking.end_date.to_date - @booking.start_date.to_date).to_i+1) * (@booking.room.room_type.price) %></p>
+          <p class="card-text"><strong>Booking Status:</strong><%= @booking.status %></p>
+        </div>
+      </div>
     </div>
+    <div class="col mt-3 mb-3 p-3">
+      <%= link_to "Edit this booking", edit_hotel_room_booking_path(@booking), class: 'btn btn-success' %>
+      <%= link_to "Back to bookings", hotel_room_bookings_path(@room.hotel, @room), class: 'btn btn-primary' %>
+      <%= link_to "Cancle booking", hotel_room_booking_path(@booking), data: {turbo_method: :delete}, class: 'btn btn-danger' %>
+      <% if @booking.status == "Pending" %>
+        <%= link_to "Make Payment", new_booking_payment_path(@booking), class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-  
   root "home#index"
   get 'home/index'
   get 'home/profile', to: 'home#profile', as: 'profile'
@@ -21,17 +20,12 @@ Rails.application.routes.draw do
       resources :bookings
     end
   end
-
   resources :bookings do
     resources :payments, only: [:index, :show, :new, :create]
   end
-
   resources :room_types
-  
-
   namespace :admin do
     resources :dashboard, only: [:index]
-    # get 'dashboard/display_all_booking', to: "dashboard#display_all_booking"
   end
   namespace :manager do
     resources :dashboard, only: [:index]

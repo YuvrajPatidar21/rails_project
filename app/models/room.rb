@@ -12,6 +12,4 @@ class Room < ApplicationRecord
     def set_default_status
       self.status ||= :Available
     end 
-    
-
 end

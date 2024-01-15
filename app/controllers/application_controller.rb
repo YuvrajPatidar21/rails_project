@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
-    # Check the role of the signed-in user and redirect accordingly
     if resource.is_a?(User) && resource.role == 'admin'
-      admin_dashboard_index_path # Example redirect for an admin user
+      admin_dashboard_index_path
     elsif resource.is_a?(User) && resource.role == 'manager'
-      manager_dashboard_index_path # Example redirect for a manager user
+      manager_dashboard_index_path
     else
-      customer_dashboard_index_path # Default redirect for other users
+      customer_dashboard_index_path
     end
   end 
 
