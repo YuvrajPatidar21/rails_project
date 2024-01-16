@@ -36,7 +36,7 @@
       <% if @booking.status == "Pending" %>
         <%= link_to "Make Payment", new_booking_payment_path(@booking), class: 'btn btn-success m-1' %>
       <% elsif @booking.status == "Booked" %>
-        <%= link_to "See Payment Details", booking_payment_path(@booking, @booking.payment), class:'btn btn-primary m-1' %>
+        <%= link_to "See Payment Details", booking_payment_path(@booking), class:'btn btn-primary m-1' %>
       <% end %>
     </div>
   </div>

@@ -1,12 +1,17 @@
 class PaymentsController < ApplicationController
   before_action :set_booking
-  before_action :set_payment, only: %i[ show ]
-
-  # def index
-  #   @ = @booking.payment
-  # end
+  before_action :set_payment, only: %i[ show invoice ]
 
   def show
+  end
+
+  def invoice
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{current_user.name}_invoice", template: "payments/invoice", formats: [:html] , layout: 'invoice', page_size: 'A4'  # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def new

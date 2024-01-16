@@ -1,0 +1,55 @@
+<p>generated <%= Date.current %></p>
+<div class="container">
+  <div class="card">
+    <h1><strong>Invoice</strong></h1>
+  </div>
+  <div class="card-1">
+    <p>To:</p>
+    <p><strong>Name: </strong><%= @booking.user.name %></p>
+    <p><strong>Mobile: </strong><%= @booking.user.mobile %></p>
+    <p><strong>Email: </strong><%= @booking.user.email %></p>
+    <p><strong>Address: </strong><%= @booking.user.address %>, <%= @booking.user.city %>,<%= @booking.user.state %>, <%= @booking.user.zipcode %></p>
+  </div>
+
+  <div class="card-1">
+    <h2>Booking details: </h2>
+    <p>Booking Id: BOOKING00<%= @booking.id %></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Room Number</th>
+          <th>Room Type</th>
+          <th>Capacity (per person)</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Price /day</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @booking.room.room_number %></td>
+          <td><%= @booking.room.room_type.name %></td>
+          <td><%= @booking.room.room_type.capacity %></td>
+          <td><%= @booking.start_date %></td>
+          <td><%= @booking.end_date %></td>
+          <td><%= @booking.room.room_type.price %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="amount">
+      <p>Your Total Amount for <%= (@booking.end_date.to_date - @booking.start_date.to_date).to_i + 1 %> day.: <%= @payment.amount %>/-</p>
+    </div>
+
+    <div class="card-2">
+      <p>From:</p>
+      <p><strong>Hotel Name: </strong><%= @payment.booking.room.hotel.name %></p>
+      <p><strong>Telephone: </strong><%= @payment.booking.room.hotel.telephone  %></p>
+      <p><strong>Email: </strong><%= @payment.booking.room.hotel.email  %></p>
+      <p><strong>Address: </strong><%= @payment.booking.user.address %>, <%= @payment.booking.user.city %>,<%= @payment.booking.user.state %>, <%= @payment.booking.user.zipcode %></p>
+    </div>
+
+    <div class="card">
+      <h1><strong>Thank You For Join Us.</strong></h1>
+    </div>
+  </div>
+</div>

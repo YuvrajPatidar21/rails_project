@@ -30,9 +30,9 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      format.html { redirect_to hotel_rooms_path(@hotel), notice: "Room was successfully updated." }
+      redirect_to hotel_rooms_path(@hotel), notice: "Room was successfully updated."
     else
-      format.html { render :edit, status: :unprocessable_entity }
+      render :edit, status: :unprocessable_entity
     end
   end
 

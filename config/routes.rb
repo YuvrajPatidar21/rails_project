@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
   }
   root "home#index"
   get 'home/index'
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :bookings do
     resources :payments, only: [:index, :show, :new, :create]
   end
+  get '/bookings/:booking_id/payments/:id/invoice', to: 'payments#invoice', as: 'invoice'
   resources :room_types
   namespace :admin do
     resources :dashboard, only: [:index]
