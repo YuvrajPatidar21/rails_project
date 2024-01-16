@@ -3,7 +3,9 @@ class Payment < ApplicationRecord
 
   after_create :mark_booking_status
   after_create :mark_room_status
-
+  before_create do
+    self.amount = self.booking.calculate_amount
+  end
   private
 
     def mark_booking_status
