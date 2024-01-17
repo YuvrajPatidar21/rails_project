@@ -1,0 +1,125 @@
+<div class="col-lg-12 mx-lg-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <h2 class="card-title text-center ">New Registraion</h2>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: user, url: admin_dashboard_create_user_path, class: 'row g-3') do |f| %>
+        <% if @user.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(user.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+            <ul>
+              <% user.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="col-md-6">
+          <%= f.label :name, class:'form-label' %>
+          <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :email, class:'form-label' %>
+          <%= f.email_field :email, autocomplete: "email", class: 'form-control '%>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :mobile, class: "form-label" %>
+          <%= f.text_field :mobile, class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :date_of_birth, class:'form-label' %>
+          <%= f.date_field :date_of_birth, class: 'form-control' %>
+        </div>
+        <div class="col-md-12">
+          <%= f.label :address, class:'form-label' %>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+        <div>
+        <% if current_user %>
+          <% if current_user.admin? || current_user.manager?%>
+            <div class="col-md-6">
+              <%= f.label :role, class:'form-label' %>
+              <%= f.select :role, User.roles.keys.map { |role| [role, role] }, {},class: 'form-select' %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="col-md-6">
+            <%= f.label :role, class:'form-label' %>
+            <%= f.select :role,[:customer], {},class: 'form-select' %>
+          </div>
+        <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :status, class:'form-label' %>  
+          <%= f.select :status, ["Single", "Married"],{}, class: 'form-select' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :city, class:'form-label' %>  
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :state, class:'form-label' %>  
+          <%= f.select :state, [ "Andhra Pradesh",
+                "Arunachal Pradesh",
+                "Assam",
+                "Bihar",
+                "Chhattisgarh",
+                "Goa",
+                "Gujarat",
+                "Haryana",
+                "Himachal Pradesh",
+                "Jammu and Kashmir",
+                "Jharkhand",
+                "Karnataka",
+                "Kerala",
+                "Madhya Pradesh",
+                "Maharashtra",
+                "Manipur",
+                "Meghalaya",
+                "Mizoram",
+                "Nagaland",
+                "Odisha",
+                "Punjab",
+                "Rajasthan",
+                "Sikkim",
+                "Tamil Nadu",
+                "Telangana",
+                "Tripura",
+                "Uttarakhand",
+                "Uttar Pradesh",
+                "West Bengal",
+                "Andaman and Nicobar Islands",
+                "Chandigarh",
+                "Dadra and Nagar Haveli",
+                "Daman and Diu",
+                "Delhi",
+                "Lakshadweep",
+                "Puducherry"],{}, class: 'form-select' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :zipcode, class:'form-label' %>  
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :password, class:'form-label' %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :password_confirmation, class:'form-label' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :profile_picture, class: "form-label" %>
+          <%= f.file_field :profile_picture, class: 'form-control' %>
+        </div>
+        <div class="col-12">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

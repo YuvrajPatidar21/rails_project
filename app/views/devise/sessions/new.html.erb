@@ -1,5 +1,5 @@
-<main id="main">
-  <div class="col-lg-6 mx-lg-auto">
+<main class="mt-5" id="main" >
+  <div class="col-lg-6 mx-lg-auto mt-5">
     <div class="card shadow">
       <div class="card-header">
         <h2 class="card-title text-center ">Log In</h2>
@@ -7,8 +7,6 @@
       <div class="card-body">
         <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), class: "row") do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
           <div class="mb-2">
             <%= f.label :email, class: 'form-label' %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

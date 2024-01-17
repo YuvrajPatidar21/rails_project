@@ -1,4 +1,7 @@
-<h1>Hello, <%= current_user.name %></h1>
+<div>
+  <h1>Hello, <%= current_user.name %></h1>
+</div>
+
 <h2 class="main-title">Dashboard</h2>
 <% if current_user.admin? || current_user.manager? %>  
   <div class="row stat-cards mb-4">

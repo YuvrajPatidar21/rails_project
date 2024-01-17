@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_many :bookings
   has_many :rooms, through: :bookings
+  has_many :payments, through: :bookings
 
   devise :database_authenticatable, 
          :registerable,

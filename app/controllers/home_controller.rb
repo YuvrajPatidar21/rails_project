@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
   layout "home"
   def index
+    @hotels = Hotel.all
   end
-  
+ 
   def about
   end
   
