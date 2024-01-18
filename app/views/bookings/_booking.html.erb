@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
-<div class="card text-light text-center lg-auto shadow bg-primary">
+<div class="card text-light text-center lg-auto shadow bg-primary mt-5">
   <h1>Bookings</h1>
 </div>
 <div class="card shadow mt-3">
-  <div class="card text-center mb-3">
-    <table class="table table-responsive">
+  <div class="table-responsive">
+    <table class="table">
       <thead class="table-dark">
         <tr>
           <th>Guests</th>
@@ -20,6 +19,7 @@
       </thead>
       <tbody>
         <% @bookings.each do |booking| %>
+          
           <tr>
             <td><%= booking.user.name %></td>
             <td><%= booking.room.hotel.name %></td>

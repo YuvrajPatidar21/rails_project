@@ -1,16 +1,15 @@
 class User < ApplicationRecord
   has_and_belongs_to_many :hotels
-  has_one_attached :picture
-  has_many :bookings
+  has_one_attached :profile_picture
+  has_many :bookings, dependent: :destroy
   has_many :rooms, through: :bookings
+  has_many :payments, through: :bookings
 
   devise :database_authenticatable, 
          :registerable,
          :recoverable, 
          :rememberable, 
-         :validatable,
-         :confirmable,
-         :trackable
+         :validatable
 
   validates :name, presence: true, uniqueness: true, length: {minimum: 3}
   validates :email, presence: true, uniqueness: true
@@ -26,7 +25,7 @@ class User < ApplicationRecord
   after_create do
     WelcomeMailer.send_greetings_notification(self).deliver_now
   end
-
+  
   enum role: [:customer, :manager, :admin]
     
   after_initialize :set_default_role, if: :new_record?
@@ -36,11 +35,6 @@ class User < ApplicationRecord
   end    
 
   private
-
-    def after_confirmation
-      WelcomeMailer.send_greetings_notification(self)
-                  .deliver_now
-    end
 
     def validate_date_of_birth
       if date_of_birth.present? && date_of_birth > Date.current 

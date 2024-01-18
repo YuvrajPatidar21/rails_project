@@ -1,27 +1,27 @@
 class RoomTypesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  
+  before_action :set_hotel
   before_action :set_room_type, only: %i[ show edit update destroy ]
 
   def index
-    @room_types = RoomType.all
+    @room_types = @hotel.room_types
   end
 
   def show
   end
 
   def new
-    @room_type = RoomType.new
+    @room_type = @hotel.room_types.new
   end
 
   def edit
   end
 
   def create
-    @room_type = RoomType.new(room_type_params)
+    @room_type = @hotel.room_types.new(room_type_params)
     if @room_type.save
-      redirect_to room_type_url(@room_type), notice: "Room type was successfully created."
+      redirect_to hotel_room_types_path(@hotel), notice: "Room type was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class RoomTypesController < ApplicationController
 
   def update
     if @room_type.update(room_type_params)
-      redirect_to room_type_url(@room_type), notice: "Room type was successfully updated."
+      redirect_to hotel_room_types_path(@hotel), notice: "Room type was successfully updated."
     else
         render :edit, status: :unprocessable_entity
     end
@@ -37,13 +37,18 @@ class RoomTypesController < ApplicationController
 
   def destroy
     if @room_type.destroy!
-      redirect_to room_types_url, notice: "Room type was successfully destroyed."
+      redirect_to hotel_room_types_path, notice: "Room type was successfully destroyed."
     else
-      redirect_to room_type_url, notice: "Room type was not destroyed."
+      redirect_to hotel_room_types_path, notice: "Room type was not destroyed."
     end
   end
 
   private
+  
+    def set_hotel
+      @hotel = Hotel.find_by(id: params[:hotel_id])
+    end
+
     def set_room_type
       @room_type = RoomType.find(params[:id])
     end

@@ -4,7 +4,7 @@
       <%= yield :add_room_type_heading %>
     </div>
     <div class="card-body">
-      <%= form_with(model: room_type, class: "row") do |form| %>
+      <%= form_with(model: [@hotel, room_type], class: "row") do |form| %>
         <% if room_type.errors.any? %>
           <div style="color: red">
             <h2><%= pluralize(room_type.errors.count, "error") %> prohibited this room_type from being saved:</h2>

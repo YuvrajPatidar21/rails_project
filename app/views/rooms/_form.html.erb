@@ -1,4 +1,4 @@
-<div class="col-lg-12 mx-lg-auto">
+<div class="col-lg-12 mx-lg-auto mt-5">
   <div class="card shadow">
     <div class="card-header">
       <h2 class="card-title text-center "><%= yield :add_room_type_heading %></h2>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-12 mb-2">
           <%= form.label :room_type_id, 'Select Room type', class: 'form-label'  %>
-          <%= form.collection_select :room_type_id, RoomType.all, :id, :name, {}, class:'form-select' %>
+          <%= form.collection_select :room_type_id, RoomType.where(hotel_id: @hotel.id), :id, :name, {}, class:'form-select' %>
         </div>
         <div class="col-12 mb-2">
           <%= form.label :room_pictures, class: 'form-label' %>

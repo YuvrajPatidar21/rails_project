@@ -1,81 +1,84 @@
 <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
-  <div class="container-fluid">
-    <%= link_to "Hotel Management", root_path, class: 'navbar-brand' %>
+  <div class="container-fluid ">
+    <%= link_to "VoyageVista", root_path, class: 'navbar-brand ms-5' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
           <% if current_user %>
             <% if current_user.admin? %>
-              <li class="nav-item active">
+              <li class="nav-item active ms-3">
                 <%= link_to "Dashboard", admin_dashboard_index_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item dropdown ">
-              <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
+              <li class="nav-item ms-3">
+                <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Room Type", room_types_path, class:'nav-link active' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "All Booking", display_booking_path, class: 'nav-link active' %>
+              <%# <li class="nav-item ms-3"> %>
+                <%# <%= link_to "Room Type", room_types_path, class:'nav-link active' %>
+              <%# </li> %>
+              <li class="nav-item ms-3">
+                <%= link_to "Bookings", display_booking_path, class: 'nav-link active' %>
                 <%# <a class="nav-link active" href="#">All Booking</a> %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">All Payments</a>
+              <li class="nav-item ms-3">
+                <%= link_to "Payments", display_payment_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">All Users</a>
+              <li class="nav-item ms-3">
+                <%= link_to "Users", admin_dashboard_display_user_path, class: 'nav-link active' %>
               </li>
             <% elsif current_user.manager? %>
-              <li class="nav-item active">
+              <li class="nav-item active ms-3">
                 <%= link_to "Dashboard", manager_dashboard_index_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">Booking</a>
+              <li class="nav-item ms-3">
+                <%= link_to "Bookings", display_booking_path, class: 'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">Payments</a>
+              <li class="nav-item ms-3">
+                <%= link_to "Payments", display_payment_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">Users</a>
+              <li class="nav-item ms-3">
+                <%= link_to "Users", manager_dashboard_display_user_path, class: 'nav-link active' %>
               </li>          
             <% else %>
-              <li class="nav-item active">
+              <li class="nav-item active ms-3">
                 <%= link_to "Dashboard", customer_dashboard_index_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item dropdown ">
+              <li class="nav-item ms-3 ">
               <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item ms-3">
                 <%= link_to "My Booking", display_booking_path, class: 'nav-link active' %>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">My Payments</a>
+              <li class="nav-item ms-3">
+                <%= link_to "My Payment", display_payment_path, class:'nav-link active' %>
               </li>
             <% end %>
           <% else %>
-            <li class="nav-item active">
+            <li class="nav-item active ms-3">
               <%= link_to "Home", root_path, class:'nav-link active' %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ms-3 ">
+                <%= link_to "Hotels", hotels_path, class:'nav-link active' %>
+              </li>
+            <li class="nav-item ms-3">
               <%= link_to "About", about_path, class: "nav-link active"  %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ms-3">
                 <%= link_to "Services", home_service_path, class: "nav-link active" %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ms-3">
               <%= link_to "Login", new_user_session_path, class: "nav-link active"  %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ms-3">
               <%= link_to "Sign up", new_user_registration_path, class: "nav-link active" %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ms-3">
               <%= link_to "Contact us", contact_path, class: "nav-link active" %>
             </li> 
           <% end %>  
         </ul>
-        <ul class="navbar-nav d-flex">
+        <ul class="navbar-nav d-flex me-5">
           <% if current_user %>
             <li class="nav-item dropdown">
               <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

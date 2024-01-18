@@ -1,12 +1,30 @@
 class PaymentsController < ApplicationController
+  before_action :authenticate_user! 
   before_action :set_booking
-  before_action :set_payment, only: %i[ show ]
+  before_action :set_payment, only: %i[ show invoice ]
 
-  # def index
-  #   @ = @booking.payment
-  # end
+  def display_payment
+    if current_user.admin?
+      @payments = Payment.all
+    elsif current_user.manager?
+      current_user.hotels.each do |hotel|
+        @payments = hotel.payments
+      end
+    else
+      @payments = current_user.payments
+    end
+  end
 
   def show
+  end
+
+  def invoice
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@payment.booking.user.name}_invoice", template: "payments/invoice", formats: [:html] , layout: 'invoice', page_size: 'A4'  # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def new

@@ -1,0 +1,20 @@
+<h1>Your Booking details</h1>
+<pre>
+  Hey <%= @booking.user.name %>, 
+
+    We hope this message finds you well. We would like to inform you that your 
+    booking BOOKING00<%= @booking.id  %> with us is currently pending confirmation 
+    due to outstanding payment. To secure your reservation, kindly make the 
+    required payment other wise cancle your booking.
+
+    your booking details: 
+    Booking Hotel: <%= @booking.room.hotel.name %>
+    Booking Room: <%= @booking.room.room_type.name %>
+    Booking Check-in date: <%= @booking.start_date %>
+    Booking Check-out date: <%= @booking.end_date %>
+    Booking Price /day: <%= @booking.room.room_type.price %>
+    Booking Capacity: <%= @booking.room.room_type.capacity %>
+    Booking Status: <%= @booking.status %>
+</pre>
+
+<p>Thank you for choosing Us.</p>

@@ -1,0 +1,19 @@
+<h1>Your Booking details</h1>
+<pre>
+  Hey <%= @payment.booking.user.name %>, 
+
+    We hope this message finds you well. We would like to inform you that your 
+    booking BOOKING00<%= @payment.booking.id  %> was booked successfully.
+
+    your booking details: 
+    Booking Hotel: <%= @payment.booking.room.hotel.name %>
+    Booking Room: <%= @payment.booking.room.room_type.name %>
+    Booking Check-in date: <%= @payment.booking.start_date %>
+    Booking Check-out date: <%= @payment.booking.end_date %>
+    Booking Price /day: <%= @payment.booking.room.room_type.price %>
+    Booking Capacity: <%= @payment.booking.room.room_type.capacity %>
+    Booking Amount: <%= @payment.amount %>
+    Booking Status: <%= @payment.booking.status %>
+</pre>
+
+<p>Thank you for choosing Us.</p>
