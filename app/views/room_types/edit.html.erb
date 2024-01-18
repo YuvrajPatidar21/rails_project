@@ -4,6 +4,6 @@
 <%= render "form", room_type: @room_type %>
 <br>
 <div class="lg-6 mt-5 mx-lg-auto text-center ">
-  <%= link_to "Show this room type", @room_type %> |
-  <%= link_to "Back to room types", room_types_path %>
+  <%= link_to "Show this room type", hotel_room_type_path(@hotel, @room_type) %> |
+  <%= link_to "Back to room types", hotel_room_types_path %>
 </div>

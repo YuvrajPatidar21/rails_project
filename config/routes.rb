@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'display_booking', to: 'bookings#display_booking', as: 'display_booking'
   get 'display_payment', to: 'payments#display_payment', as: 'display_payment'
   resources :hotels do 
+    resources :room_types
     resources :services
     resources :rooms do
       resources :bookings
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
     resources :payments, only: [:show, :new, :create]
   end
   get '/bookings/:booking_id/payments/:id/invoice', to: 'payments#invoice', as: 'invoice'
-  resources :room_types
+  # resources :room_types
   namespace :admin do
     resources :dashboard, only: [:index]
     get 'new_user', to: 'dashboard#new_user', as: 'dashboard_new_user'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   end
   namespace :manager do
     resources :dashboard, only: [:index]
+    get 'display_user', to: 'dashboard#display_user', as: 'dashboard_display_user'
   end
   namespace :customer do
     resources :dashboard, only: [:index]

@@ -23,6 +23,12 @@
         <%= link_to "Show room", hotel_rooms_path(@hotel), class:'btn btn-warning' %>
         <%= link_to "Back to hotels", hotels_path, class: 'btn btn-primary' %>
       </div>
+
+      <div class="card-body">
+        <% if can? :create, RoomType %>
+          <%= link_to "Room Type", hotel_room_types_path(@hotel), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -30,7 +36,7 @@
   <div class="card-header text-center mb-2  ">
     <h1><strong>All Services of <%= @hotel.name %></strong></h1>
   </div>
-  <% if can? :create, Room %>
+  <% if can? :create, Service %>
     <div>
       <%= link_to "New Service", new_hotel_service_path(@hotel), class: 'btn btn-primary mb-3 end-0' %>
     </div>

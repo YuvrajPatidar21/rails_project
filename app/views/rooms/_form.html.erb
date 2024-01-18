@@ -26,7 +26,7 @@
         </div>
         <div class="col-12 mb-2">
           <%= form.label :room_type_id, 'Select Room type', class: 'form-label'  %>
-          <%= form.collection_select :room_type_id, RoomType.all, :id, :name, {}, class:'form-select' %>
+          <%= form.collection_select :room_type_id, RoomType.where(hotel_id: @hotel.id), :id, :name, {}, class:'form-select' %>
         </div>
         <div class="col-12 mb-2">
           <%= form.label :room_pictures, class: 'form-label' %>

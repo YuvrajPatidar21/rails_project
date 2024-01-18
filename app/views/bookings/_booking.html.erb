@@ -19,6 +19,7 @@
       </thead>
       <tbody>
         <% @bookings.each do |booking| %>
+          
           <tr>
             <td><%= booking.user.name %></td>
             <td><%= booking.room.hotel.name %></td>

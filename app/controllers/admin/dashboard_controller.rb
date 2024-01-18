@@ -6,7 +6,7 @@ class Admin::DashboardController < ApplicationController
   end
 
   def display_user
-    @users = User.where(role: ['customer', 'manager'])
+    @users = User.where(role: [ 'manager'])
   end
 
   def new_user
@@ -24,6 +24,6 @@ class Admin::DashboardController < ApplicationController
   
   private
     def user_params
-      params.require(:user).permit(:name, :email, :mobile, :address, :city, :date_of_birth, :status, :role, :state, :zipcode, :password, :password_confirmation, :profile_picture)
+      params.require(:user).permit(:name, :email, :mobile, :address, :city, :date_of_birth, :status, :role, :state, :zipcode, :password, :password_confirmation, :hotel_ids, :profile_picture)
     end
 end

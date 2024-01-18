@@ -1,0 +1,37 @@
+<div class="card text-center lg-auto shadow mt-5 bg-primary text-light">
+  <h1>Users Details</h1>
+</div>
+<div>
+  <%= link_to "Registration", admin_dashboard_new_user_path, class: 'btn btn-primary mb-3 mt-3' %>
+</div>
+
+<div class="card shadow mt-3">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Status</th>
+          <th>Address</th>
+          <th>Hotel</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.mobile %></td>
+            <td><%= user.status %></td>
+            <td><%= user.address %>, <%= user.city %>, <%= user.state %>, <%= user.zipcode %></td>
+            <td><% user.hotels.each do |hotel| %><%= hotel.name %><% end %></td>
+            <td><%= user.role %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -6,6 +6,10 @@ class PaymentsController < ApplicationController
   def display_payment
     if current_user.admin?
       @payments = Payment.all
+    elsif current_user.manager?
+      current_user.hotels.each do |hotel|
+        @payments = hotel.payments
+      end
     else
       @payments = current_user.payments
     end

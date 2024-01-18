@@ -13,7 +13,11 @@ class BookingsController < ApplicationController
   def display_booking
     if current_user.admin?
       @bookings = Booking.all
-    elsif current_user.customer?
+    elsif current_user.manager?
+      current_user.hotels.each do |hotel|
+        @bookings = hotel.bookings      
+      end
+    else
       @bookings = current_user.bookings
     end
   end
@@ -29,7 +33,7 @@ class BookingsController < ApplicationController
   def create
     @booking = @room.bookings.new(booking_params)
     if @booking.save
-      redirect_to hotel_room_booking_path(@room.hotel, @room, @booking), notice: "Booking was successfully created."
+      redirect_to hotel_room_booking_path(@room.hotel, @room, @booking), notice: "Booking is pending now. For confirm make payment."
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,9 +52,9 @@ class BookingsController < ApplicationController
     @booking = @room.bookings.find(params[:id])
     if @booking.destroy
       @room.update(status: 'Available')
-      redirect_to hotel_room_bookings_path, notice: "Booking was successfully destroyed."
+      redirect_to display_booking_path, notice: "Booking was successfully Cancled."
     else
-      redirect_to hotel_room_booking_path, alert: "Failed to destroy booking."
+      redirect_to hotel_room_booking_path, alert: "Failed to Cancle."
     end
   end
 
