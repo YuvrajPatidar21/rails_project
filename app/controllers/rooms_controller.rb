@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   before_action :set_rooms, only: %i[show edit update destroy]
   
   def index
-    @rooms = @hotel.rooms
+    @rooms = @hotel.rooms.page(params[:page]).per(6)
   end
 
   def show

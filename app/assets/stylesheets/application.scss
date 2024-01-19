@@ -21,3 +21,93 @@
  .container {
   margin-top: 40px;
 }
+
+/* Basic styling for Kaminari paginate links */
+
+/* Container for pagination */
+.pagination {
+  display: flex;
+  // justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Individual pagination item */
+.pagination li {
+  margin: 0 6px;
+}
+
+/* Pagination link styles */
+.pagination a {
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover styles for pagination link */
+.pagination a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Active/current page styles */
+.pagination .current {
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Next and previous link styles */
+.pagination .prev,
+.pagination .next {
+  font-weight: bold;
+}
+
+/* Disabled link styles */
+.pagination .disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Example CSS to style Kaminari paginate links */
+// .pagination {
+//   display: flex;
+//   list-style: none;
+//   padding: 0;
+//   justify-content: center;
+// }
+
+// .pagination li {
+//   margin: 0 5px;
+// }
+
+// .pagination a {
+//   text-decoration: none;
+//   padding: 8px 12px;
+//   border: 1px solid #ddd;
+//   border-radius: 4px;
+//   color: #333;
+// }
+
+// .pagination .current {
+//   background-color: #007bff;
+//   color: #fff;
+//   border: 1px solid #007bff;
+// }
+
+// .pagination .next,
+// .pagination .prev {
+//   font-weight: bold;
+// }

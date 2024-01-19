@@ -26,10 +26,11 @@
             <p class="card-text"><strong>City: </strong><%= hotel.city %></p>
             <p class="card-text"><strong>State: </strong><%= hotel.state %></p>
             <p class="card-text"><strong>Zipcode: </strong><%= hotel.zipcode %></p>
-            <%= link_to "Book", hotel, class: 'btn btn-primary' %>
+            <%= link_to "More Information", hotel, class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+<%= paginate @hotels %>

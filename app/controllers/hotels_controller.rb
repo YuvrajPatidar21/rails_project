@@ -3,11 +3,11 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: %i[ show edit update destroy ]
 
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.all.page(params[:page]).per(5)
   end
 
   def show
-    @services = @hotel.services
+    @services = @hotel.services.page(params[:page]).per(6)
   end
 
   def new

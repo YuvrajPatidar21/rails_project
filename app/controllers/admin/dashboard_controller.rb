@@ -2,11 +2,19 @@ class Admin::DashboardController < ApplicationController
   layout 'admin_panel'
 
   def index
-    @hotels = Hotel.all
+    @hotels_count = Hotel.all
+    @hotels = Hotel.all.page(params[:page]).per(3)
+    @bookigs = Booking.all
+    @users = User.all
+    @contacts = Contact.all
+    @payments = Payment.all
+    @rooms = Room.all
+    
+    
   end
 
   def display_user
-    @users = User.where(role: [ 'manager'])
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def new_user

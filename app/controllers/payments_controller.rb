@@ -5,13 +5,13 @@ class PaymentsController < ApplicationController
 
   def display_payment
     if current_user.admin?
-      @payments = Payment.all
+      @payments = Payment.all.page(params[:page]).per(10)
     elsif current_user.manager?
       current_user.hotels.each do |hotel|
-        @payments = hotel.payments
+        @payments = hotel.payments.page(params[:page]).per(10)
       end
     else
-      @payments = current_user.payments
+      @payments = current_user.payments.page(params[:page]).per(10)
     end
   end
 
@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = @booking.build_payment(payment_params)
-    if @payment.save
+    if @payment.savepage(params[:page]).per(10)
       redirect_to booking_payment_path(@booking, @payment), notice: "Done Payment."
     else
       render :new, status: :unprocessable_entity
