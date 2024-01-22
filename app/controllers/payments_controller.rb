@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = @booking.build_payment(payment_params)
-    if @payment.savepage(params[:page]).per(10)
+    if @payment.save
       redirect_to booking_payment_path(@booking, @payment), notice: "Done Payment."
     else
       render :new, status: :unprocessable_entity
