@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_room, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
   def index
-    @bookings = @room.bookings
+    @bookings = @room.bookings.page(params[:page]).per(10)
   end
   
   def show
@@ -12,13 +12,14 @@ class BookingsController < ApplicationController
   
   def display_booking
     if current_user.admin?
-      @bookings = Booking.all
+      # @bookings = Booking.all
+      @bookings = Booking.all.page(params[:page]).per(10)
     elsif current_user.manager?
       current_user.hotels.each do |hotel|
-        @bookings = hotel.bookings      
+        @bookings = hotel.bookings.page(params[:page]).per(10)
       end
     else
-      @bookings = current_user.bookings
+      @bookings = current_user.bookings.page(params[:page]).per(10)
     end
   end
 

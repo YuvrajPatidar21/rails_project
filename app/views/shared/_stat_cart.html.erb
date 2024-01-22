@@ -1,144 +1,110 @@
 <div>
   <h1>Hello, <%= current_user.name %></h1>
 </div>
-
 <h2 class="main-title">Dashboard</h2>
 <% if current_user.admin? || current_user.manager? %>  
-  <div class="row stat-cards mb-4">
-    <div class="col-md-6 col-xl-3">
+  <div class="row stat-cards mb-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color: blue;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-house-circle-check fa-2x"></i>
+          <i class="fa-solid fa-hotel fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">54</p>
-          <p class="stat-cards-info__title">Total Room</p>
+          <p class="stat-cards-info__num"><%= @hotels_count.count %></p>
+          <p class="stat-cards-info__title">Total Hotel</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item " style="background-color: gray;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-users fa-2x"></i>
+          <i class="fa-solid fa-users fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">140</p>
+          <p class="stat-cards-info__num"><%= @users.count %></p>
           <p class="stat-cards-info__title">Total User</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
-      <article class="stat-cards-item" style="background-color:aquamarine;">
-        <div class="stat-cards-icon">
-          <i class="fa-solid fa-person-arrow-down-to-line fa-2x"></i>
-        </div>
-        <div class="stat-cards-info">
-          <p class="stat-cards-info__num">147</p>
-          <p class="stat-cards-info__title">Total visits</p>
-        </div>
-      </article>
-    </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color:mediumspringgreen;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-message fa-2x"></i>
+          <i class="fa-solid fa-message fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">145</p>
+          <p class="stat-cards-info__num"><%= @contacts.count %></p>
           <p class="stat-cards-info__title">Total feedback</p>
         </div>
       </article>
     </div>
   </div>  
-  <div class="row stat-cards mb-4 ">
-    <div class="col-md-6 col-xl-3">
+  <div class="row stat-cards mb-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color: orange;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-money-bill-1-wave fa-2x"></i>
+          <i class="fa-solid fa-money-bill-1-wave fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">54</p>
+          <p class="stat-cards-info__num"><%= @payments.count %></p>
           <p class="stat-cards-info__title">Total Payment</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item " style="background-color: lightgray;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-receipt fa-2x"></i>
+          <i class="fa-solid fa-receipt fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">140</p>
+          <p class="stat-cards-info__num"><%= @bookigs.count %></p>
           <p class="stat-cards-info__title">Total Booking</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color:yellow ;">
         <div class="stat-cards-icon">
-          <i class="fa-solid fa-house fa-2x"></i>
+          <i class="fa-solid fa-house fa-3x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">1478 286</p>
+          <p class="stat-cards-info__num"><%= @rooms.count %></p>
           <p class="stat-cards-info__title">Availabe Room</p>
-        </div>
-      </article>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <article class="stat-cards-item" style="background-color:springgreen;">
-        <div class="stat-cards-icon">
-          <i class="fa-solid fa-house-lock fa-2x" ></i>
-        </div>
-        <div class="stat-cards-info">
-          <p class="stat-cards-info__num">14</p>
-          <p class="stat-cards-info__title">Booked Room</p>
         </div>
       </article>
     </div>
   </div>
 <% else %>
   <div class="row stat-cards">
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color: blue;">
         <div class="stat-cards-icon">
           <i class="fa-solid fa-house-circle-check fa-2x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">54</p>
-          <p class="stat-cards-info__title">Total Room</p>
+          <p class="stat-cards-info__num"><%= @hotels_count.count %></p>
+          <p class="stat-cards-info__title">Total Hotel</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
-      <article class="stat-cards-item " style="background-color: gray;">
-        <div class="stat-cards-icon">
-          <i class="fa-solid fa-house fa-2x"></i>
-        </div>
-        <div class="stat-cards-info">
-          <p class="stat-cards-info__num">140</p>
-          <p class="stat-cards-info__title">Availale Room</p>
-        </div>
-      </article>
-    </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color:aquamarine;">
         <div class="stat-cards-icon">
           <i class="fa-solid fa-receipt fa-2x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">14</p>
+          <p class="stat-cards-info__num"><%= @bookings.count %></p>
           <p class="stat-cards-info__title">Your booking</p>
         </div>
       </article>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-6 col-xl-4">
       <article class="stat-cards-item" style="background-color:mediumspringgreen;">
         <div class="stat-cards-icon">
           <i class="fa-solid fa-person-arrow-down-to-line fa-2x"></i>
         </div>
         <div class="stat-cards-info">
-          <p class="stat-cards-info__num">86</p>
-          <p class="stat-cards-info__title">Total visits</p>
+          <p class="stat-cards-info__num"><%= @payments.count %></p>
+          <p class="stat-cards-info__title">Your Payment</p>
         </div>
       </article>
     </div>

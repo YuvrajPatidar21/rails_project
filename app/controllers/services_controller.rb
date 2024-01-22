@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   before_action :set_services, only: %i[show edit update destroy]
 
   def index
-    @services = @hotel.services
+    @services = @hotel.services.page(params[:page]).per(6)
   end
 
   def show
