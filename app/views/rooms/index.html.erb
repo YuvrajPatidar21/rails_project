@@ -17,7 +17,7 @@
             <% if room.room_pictures.attached? %>
             <%= image_tag room.room_pictures.sample, alt: 'room_picture', class: 'card-img-top', style: "width: auto; height: 300px;" %>
             <% else %>
-                <%= image_tag "room_type/default_room_image", class: 'card-img', style: "width: auto; height: 300px;"%>
+                <p>No Image Available</p>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><strong>Room number: </strong><%= room.room_number %></h5>

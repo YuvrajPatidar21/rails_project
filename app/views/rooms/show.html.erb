@@ -7,7 +7,7 @@
       <% if @room.room_pictures.attached? %>
         <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 500px; height: 400px;" %>
       <% else %>
-        <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+        <p>No Image Available</p>
       <% end %>
     </div>
     <div class="col-md-7">

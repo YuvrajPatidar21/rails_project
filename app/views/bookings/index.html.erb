@@ -31,7 +31,9 @@
             <td><%= booking.end_date %></td>
             <td><%= ((booking.end_date.to_date - booking.start_date.to_date).to_i+1) * (booking.room.room_type.price) %></td>
             <td><%= booking.status %></td>
-            <td><%= link_to "Show booking details", hotel_room_booking_path(@room.hotel, @room, booking), class:'btn btn-info' %></td>
+            <% if current_user == booking.user || current_user.admin?%>
+              <td><%= link_to "Show booking details", hotel_room_booking_path(@room.hotel, @room, booking), class:'btn btn-info' %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

@@ -8,18 +8,7 @@ class Payment < ApplicationRecord
     self.amount = self.booking.calculate_amount
   end
   private
-
-    def mark_booking_status
-      puts "++++++++++++++++++++++++++++++"
-      p booking.update(status: 'Booked')
-      puts "++++++++++++++++++++++++++++"
-      booking.update(status: 'Booked')
-    end
-
-    def send_booking_status_booked
-      BookingMailer.booking_status_booked(self).deliver_now
-    end
-
+  
     def assign_hotel_to_user
       hotel = booking.room.hotel
       user = booking.user
@@ -28,5 +17,14 @@ class Payment < ApplicationRecord
         hotel.users << user
       end
     end
+
+    def mark_booking_status
+      booking.update(status: 'Booked')
+    end
+
+    def send_booking_status_booked
+      BookingMailer.booking_status_booked(self).deliver_now
+    end
+
 
 end

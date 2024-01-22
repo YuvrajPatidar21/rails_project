@@ -17,7 +17,7 @@
             <% if service.service_picture.attached? %>
               <%= image_tag service.service_picture, alt: 'service_picture', class: 'card-img-top', style: "width: auto; height: 300px;" %>
             <% else %>
-                <%= image_tag "service/default_service_image", class: 'card-img', style: "width: auto; height: 300px;" %>
+              <p>No Image Available</p>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><strong><%= service.name %></strong></h5>
