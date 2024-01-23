@@ -5,9 +5,9 @@
       <div class="col">
         <div class="card h-100 ">
           <% if hotel.hotel_pictures.attached? %>
-            <%= image_tag hotel.hotel_pictures.sample, alt: 'room_picture', class: 'card-img-top shadow', style: "width: auto; height: 300px;"%>
+            <%= image_tag hotel.hotel_pictures.sample, alt: 'hotel_picture', class: 'card-img-top shadow', style: "width: auto; height: 300px;"%>
           <% else %>
-            <%= image_tag "", alt: 'room_picture', class: 'card-img-top', style: "width: auto; height: 350px;"%>
+            <%= image_tag "", alt: 'hotel_picture', class: 'card-img-top', style: "width: auto; height: 350px;"%>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><strong>Hotel name: </strong><%= hotel.name %></h5>
