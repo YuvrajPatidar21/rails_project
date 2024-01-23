@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :hotels
   has_one_attached :profile_picture
   has_many :bookings, dependent: :destroy
-  has_many :rooms, through: :bookings
-  has_many :payments, through: :bookings
+  has_many :rooms, through: :bookings, dependent: :destroy
+  has_many :payments, through: :bookings, dependent: :destroy
 
   devise :database_authenticatable, 
          :registerable,
@@ -16,10 +16,10 @@ class User < ApplicationRecord
   validates :mobile, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
   validates :address, presence: true
   validates :date_of_birth, presence: true
-  validates :date_of_birth, presence: true
   validate :validate_date_of_birth
   validates :status, presence: true
   validates :city, presence: true
+  validates :state, presence: true
   validates :zipcode, presence: true, numericality: { only_integer: true}
   
   after_create do
