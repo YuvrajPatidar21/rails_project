@@ -2,9 +2,9 @@
   <div class="row g-0">
     <div class="col-md-4">
       <% if @hotel.hotel_pictures.attached? %>
-        <%= image_tag @hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
+        <%= image_tag @hotel.hotel_pictures.sample, alt: 'hotel_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
       <% else %>
-        <p>No Image Available</p>
+        <%= image_tag "", alt: 'hotel_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
       <% end %>
     </div>
     <div class="col">
@@ -51,7 +51,7 @@
              <% if service.service_picture.attached? %>
               <%= image_tag service.service_picture, alt: 'service_picture', class: 'card-img-top', style: "width: auto; height: 300px;" %>
             <% else %>
-                <p>No Image Available</p>
+              <%= image_tag "", alt: 'service_picture', class: 'card-img-top', style: "width: auto; height: 300px;" %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><strong><%= service.name %></strong></h5>

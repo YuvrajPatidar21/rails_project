@@ -14,7 +14,7 @@
           <% if hotel.hotel_pictures.attached? %>
             <%= image_tag hotel.hotel_pictures.sample, alt: 'room_picture', class: 'img-fluid rounded-star', style: "width: 700px; height: 350px;" %>
           <% else %>
-              <p>No Image Avilable</p>
+            <%= image_tag "", alt: 'hotel_picture', class: 'img-fluid rounded-starp', style: "width: 700px; height: 350px;" %>
           <% end %>
         </div>
         <div class="col-md-4 ">

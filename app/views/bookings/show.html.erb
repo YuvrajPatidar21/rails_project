@@ -10,7 +10,7 @@
         <% if @room.room_pictures.attached? %>
           <%= image_tag @room.room_pictures.sample, alt: 'rooms_picture', class: 'img-fluid rounded-star shadow', style: "width: 700px; height: 400px;" %>
         <% else %>
-          <%= image_tag "room_type/default_room_image", class: 'img-fluid rounded-star', style: "width: 500px; height: 300px;" %>
+          <%= image_tag "",alt: 'rooms_picture' ,class: 'img-fluid rounded-star shadow', style: "width: 700px; height: 400px;" %>
         <% end %>
       </div>
       <div class="col-md-5">
@@ -28,13 +28,19 @@
       </div>
     </div>
     <div class="col mt-3 mb-3 p-3">
-      <%= link_to "Edit this booking", edit_hotel_room_booking_path(@booking), class: 'btn btn-success m-1' %>
+      <% if can? :edit, Booking %>
+        <%= link_to "Edit this booking", edit_hotel_room_booking_path(@booking), class: 'btn btn-success m-1' %>
+      <% end %>
       <%= link_to "Back to bookings", hotel_room_bookings_path(@room.hotel, @room), class: 'btn btn-primary m-1' %>
       <%= link_to "Cancle booking", hotel_room_booking_path(@booking), data: {turbo_method: :delete}, class: 'btn btn-danger m-1' %>
       <% if @booking.status == "Pending" %>
-        <%= link_to "Make Payment", new_booking_payment_path(@booking), class: 'btn btn-success m-1' %>
+        <% if can? :create, Payment %>
+          <%= link_to "Make Payment", new_booking_payment_path(@booking), class: 'btn btn-success m-1' %>
+        <% end %>
       <% elsif @booking.status == "Booked" %>
-        <%= link_to "See Payment Details", booking_payment_path(@booking), class:'btn btn-primary m-1' %>
+        <% if can? :read, Payment %>
+          <%= link_to "See Payment Details", booking_payment_path(@booking), class:'btn btn-primary m-1' %>
+        <% end %>
       <% end %>
     </div>
   </div>

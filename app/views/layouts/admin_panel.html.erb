@@ -11,11 +11,10 @@
   </head>
   <body>
     <%= render "shared/navigation_bar" %>
-      <div class="container">
-        <div class="row">
-          <%= render 'shared/flash_notice' %>
-          <%= yield %>  
-        </div>  
-      </div>
+    <div class="container">
+      <div class="row">
+        <%= yield %>  
+      </div>  
+    </div>
   </body>
 </html>

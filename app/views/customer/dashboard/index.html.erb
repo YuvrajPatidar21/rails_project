@@ -7,7 +7,7 @@
           <% if hotel.hotel_pictures.attached? %>
             <%= image_tag hotel.hotel_pictures.sample, alt: 'room_picture', class: 'card-img-top shadow', style: "width: auto; height: 300px;"%>
           <% else %>
-            <%= image_tag "room_type/default_room_image", class: 'card-img-top', style: "width: auto; height: 350px;"%>
+            <%= image_tag "", class: 'card-img-top shadow', style: "width: auto; height: 350px;"%>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><strong>Hotel name: </strong><%= hotel.name %></h5>

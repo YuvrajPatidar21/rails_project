@@ -33,5 +33,7 @@
   </table>
 </div>
 <div class="text center">
-  <%= link_to "See Booking deatils", hotel_room_booking_path(@booking.room.hotel, @booking.room, @booking), class: "btn btn-primary" %>
+  <% if can? :read, Booking %>
+    <%= link_to "See Booking deatils", hotel_room_booking_path(@booking.room.hotel, @booking.room, @booking), class: "btn btn-primary" %>
+  <% end %>
 </div>
