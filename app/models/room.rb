@@ -5,6 +5,9 @@ class Room < ApplicationRecord
   has_many :bookings,dependent: :destroy
   has_many_attached :room_pictures
 
+  validates :room_number, presence: true
+  validates :status, presence: true
+
   enum status: [:Available, :Booked]
   before_create :set_default_status, if: :new_record?
   
