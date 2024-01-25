@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: {minimum: 3}
   validates :email, presence: true, uniqueness: true
+  validates :email, format:  URI::MailTo::EMAIL_REGEXP
   validates :mobile, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
   validates :address, presence: true
   validates :date_of_birth, presence: true
@@ -20,7 +21,7 @@ class User < ApplicationRecord
   validates :status, presence: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :zipcode, presence: true, numericality: { only_integer: true}
+  validates :zipcode, presence: true, numericality: { only_integer: true}, length: { is: 6}
   
   after_create do
     WelcomeMailer.send_greetings_notification(self).deliver_now
