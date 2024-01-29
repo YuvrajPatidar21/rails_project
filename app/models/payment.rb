@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :booking
 
-  validates :card_holder_name, presence: true, 
+  validates :card_holder_name, presence: true
   validates :card_number, presence: true, numericality: { only_integer: true }, length: { minimum: 16, maximum: 19}
   validates :cvv, presence: true, numericality: { only_integer: true }, length: { is: 3}
   validates :bank_name, presence: true

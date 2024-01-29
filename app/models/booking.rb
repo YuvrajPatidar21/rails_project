@@ -3,16 +3,16 @@ class Booking < ApplicationRecord
   belongs_to :user
   has_one :payment, dependent: :destroy 
  
+  
+  validates :start_date, presence: true, on: :create
+  validates :end_date, presence: true, on: :create
+  validate :end_date_after_start_date, on: :create
+  validate :start_date_not_past, on: :create
+  validate :room_avilability, on: :create
+  
   before_create :mark_booing_as_pending
   after_save :send_booking_status
   after_destroy :send_cancllation
-
-  validates :start_date, presence: true on: :create
-  validates :end_date, presence: true on: :create
-  validate :end_date_after_start_date on: :create
-  validate :start_date_not_past on: :create
-  validate :room_avilability, on: :create
-
   
   def calculate_amount
     ((self.end_date.to_date - self.start_date.to_date).to_i + 1) * self.room.room_type.price
@@ -25,7 +25,7 @@ class Booking < ApplicationRecord
     end
 
     def send_booking_status
-        BookingMailer.booking_status_pending(self).deliver_now
+      BookingMailer.booking_status_pending(self).deliver_now
     end
 
     def send_cancllation
