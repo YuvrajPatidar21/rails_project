@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
-  belongs_to :room
   belongs_to :user
+  belongs_to :room
   has_one :payment, dependent: :destroy 
  
   
@@ -8,7 +8,7 @@ class Booking < ApplicationRecord
   validates :end_date, presence: true, on: :create
   validate :end_date_after_start_date, on: :create
   validate :start_date_not_past, on: :create
-  validate :room_avilability, on: :create
+  validate :room_availability, on: :create
   
   before_create :mark_booing_as_pending
   after_save :send_booking_status
@@ -32,8 +32,10 @@ class Booking < ApplicationRecord
       BookingMailer.booking_cancle(self).deliver_now
     end
 
-    def room_avilability
-      unless room.avilability?(start_date, end_date, room_id)
+    def room_availability
+      # return unless room.present?
+
+      unless room&.availability?(start_date, end_date, room_id)
         errors.add(:base, 'Room is not available for the selected dates')
       end
     end
