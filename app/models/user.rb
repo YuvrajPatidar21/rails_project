@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :rememberable, 
          :validatable
 
-  validates :name, presence: true, uniqueness: true, length: {minimum: 3}
+  validates :name, presence: true, length: {minimum: 3}
   validates :email, presence: true, uniqueness: true
   validates :email, format:  URI::MailTo::EMAIL_REGEXP
   validates :mobile, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
@@ -26,7 +26,12 @@ class User < ApplicationRecord
   after_create do
     WelcomeMailer.send_greetings_notification(self).deliver_now
   end
-  
+  before_save do
+    self.name = name.titleize
+    self.address = address.titleize
+    self.city = city.titleize
+    self.state = state.titleize
+  end
   enum role: [:customer, :manager, :admin]
     
   after_initialize :set_default_role, if: :new_record?

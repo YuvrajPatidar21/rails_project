@@ -3,6 +3,11 @@ class Service < ApplicationRecord
   has_one_attached :service_picture
   
   validates :name, presence: true
-  validates, description: true, length: {minimum: 50}
+  validates :description, presence: true, length: {minimum: 50}
+
+  before_save do
+    self.name = name.titleize
+    self.description = description.capitalize
+  end
   
 end

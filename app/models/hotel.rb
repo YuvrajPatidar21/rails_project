@@ -3,8 +3,8 @@ class Hotel < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :room_types, dependent: :destroy
   has_many :rooms, dependent: :destroy
-  has_many :bookings, through: :rooms
-  has_many :payments, through: :bookings
+  has_many :bookings, through: :rooms, dependent: :destroy
+  has_many :payments, through: :bookings, dependent: :destroy
   has_many_attached :hotel_pictures
 
   validates :name, presence: true, uniqueness: true
@@ -17,4 +17,11 @@ class Hotel < ApplicationRecord
   validates :zipcode, presence: true, numericality: { only_integer: true}, length: { is: 6 }
   validates :description, presence: true
 
+  before_save do
+    self.name = name.upcase
+    self.location = location.titleize
+    self.city = city.titleize
+    self.state = state.titleize
+    self.description = description.capitalize
+  end
 end
