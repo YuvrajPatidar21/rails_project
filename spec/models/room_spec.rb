@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  # describe 'Associations ' do
-  #   it { should belongs_to(:hotel) }
-  #   it { should belongs_to(:room_type) }
-  #   it { should have_many(:users).through(:bookings) }
-  #   it { should have_many(:bookings).dependent(:destroy) }
-  #   it { should have_many_attached(:room_pictures)  }
-  # end
+  describe 'Associations ' do
+    it { should belong_to(:hotel) }
+    it { should belong_to(:room_type) }
+    it { should have_many(:users).through(:bookings) }
+    it { should have_many(:bookings).dependent(:destroy) }
+    it { should have_many_attached(:room_pictures)  }
+  end
 
   let(:room) { build(:room) }
   describe "Validations" do
@@ -37,9 +37,11 @@ RSpec.describe Room, type: :model do
 
   end
 
-  # describe "Enums" do
-  #   it { should define_enum_for(:status).with_values([:Available, :Booked]) }
-  # end
+  describe "enums" do
+    it "defines the correct enum values for status" do
+      should define_enum_for(:status).with_values([:Available, :Booked])
+    end
+  end
 
   describe "Callbacks" do
     describe "before_create" do
@@ -49,20 +51,19 @@ RSpec.describe Room, type: :model do
     end
   end
 
-  # describe "Method" do
-  #   describe "#avaibility?" do
-  #     it "return true if the room is avilable for the given dates" do
-  #       start_date = Date.today
-  #       end_date = Date.today+ 3.days
-  #       expect(room.avaibility?(start_date, end_date, room)).to be(true)
-  #     end
+  describe "#availability?" do
+    let(:start_date) { Date.today }
+    let(:end_date) { Date.today + 5 }
+    let(:room) { create(:room) }
 
-  #     it "return false when room is not available for the given dates" do
-  #       conflicting_bookings = create(:bookings, room: room)
-  #       start_date = conflicting_bookings.start_date
-  #       end_date = conflicting_bookings.end_date
-  #       expect(room.avaibility?(start_date, end_date, room)).to be(false)
-  #     end
-  #   end
-  # end
+    it "returns true if room is available for given dates" do
+      build(:booking, room: room, start_date: start_date, end_date: end_date )
+      expect(room.availability?(start_date, end_date, room.id)).to be(true)
+    end
+
+    it "returns false if room is not available for given dates" do
+      create(:booking, room: room, start_date: start_date, end_date: end_date)
+      expect(room.availability?(start_date, end_date, room.id)).to be(false)
+    end
+  end
 end

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Service, type: :model do
-  # describe "Associations" do
-  #   it { should belongs_to(:hotel) }
-  #   it { should have_one_attached(:service_picture)}
-  # end
+  describe "Associations" do
+    it { should belong_to(:hotel) }
+    it { should have_one_attached(:service_picture)}
+  end
 
   describe "Validations" do
     let(:service) { build(:service) }

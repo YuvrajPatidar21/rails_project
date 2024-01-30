@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # describe "Associations" do
-  #   it { should have_and_belong_to_many(:hotels) }
-  #   it { should have_one_attached(:profile_picture) }
-  #   it { should have_many(:bookings).dependent(:destroy) }
-  #   it { should have_many(:rooms).through(:bookings).dependent(:destroy) }
-  #   it { should have_many(:payments).through(:bookings).dependent(:destroy) }
-  # end
+  describe "Associations" do
+    it { should have_and_belong_to_many(:hotels) }
+    it { should have_one_attached(:profile_picture) }
+    it { should have_many(:bookings).dependent(:destroy) }
+    it { should have_many(:rooms).through(:bookings).dependent(:destroy) }
+    it { should have_many(:payments).through(:bookings).dependent(:destroy) }
+  end
 
   describe "Validations" do
     let(:user) {build(:user) }
@@ -107,38 +107,33 @@ RSpec.describe User, type: :model do
     end
   end
   
-  # describe "Enum" do
-  #   it "has the correct role" do
-  #     expect(:user.role.keys).to match_array(["customer", "manager", "admin"])
-  #   end
-
-  #   it "default to 'customer' role" do
-  #     user = build(:user,role: nil)
-  #     expect(user.customer?).to be(true)
-  #   end
-  # end
+  describe "enums" do
+    it "defines the correct enum values for role" do
+      should define_enum_for(:role).with_values([:customer, :manager, :admin])
+    end
+  end
   
-  # describe "Pricate methods" do
-  #   describe "#set default role" do
-  #     it "sets the default role to customer for new record" do
-  #       user = build(:user, role: nil)
-  #       user.save
-  #       expect(user.customer?).to be(true)
-  #     end
+  describe "Private methods" do
+    describe "#set default role" do
+      it "sets the default role to customer for new record" do
+        user = create(:user)
+        expect(user.role).to eq("customer")
+      end
 
-  #     it "does not change the role if role already set" do
-  #       user = build(:user, role: :maneger)
-  #       user.save
-  #       expect(user.manager?).to be(true)
-  #     end
-  #   end
+      it "does not change the role if role already set" do
+        user = create(:user, role: "manager")
+        expect(user.manager?).to be(true)
+      end
+    end
 
-  #   describe "#validate_date_of_birth" do
-  #     it "add an erroris the date of birth is in future" do
-  #       user = build(:user, date_of_birth: Date.current + 1.day)
-  #       user.valid?
-  #       expect(user.error(:date_of_birth)).to include ("must be in past")
-  #     end
-  #   end
-  # end
+    describe "#validate_date_of_birth" do
+      let(:user) { create(:user) }
+      it "add an erroris the date of birth is in future" do
+        if user.date_of_birth > Date.today
+          expect(user.date_of_birth).to_not be_valid
+          expect(user.errors[:date_of_birth]).to include ("must be in past")
+        end
+      end
+    end
+  end
 end

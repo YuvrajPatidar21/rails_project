@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe RoomType, type: :model do
-  # description "Associations" do
-  #   it { should belongs_to(:hotel) }
-  #   it { should have_many(:rooms).dependent(:destroy) }
-  #   it { should have_one_attached(:rooms_type_picture) }
-  # end
+  describe "Associations" do
+    it { should belong_to(:hotel) }
+    it { should have_many(:rooms).dependent(:destroy) }
+    it { should have_one_attached(:rooms_type_picture) }
+  end
 
   describe "Validations" do
     let(:room_type) { build(:room_type) }

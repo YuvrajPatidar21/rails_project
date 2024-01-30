@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Payment, type: :model do
-  # describe "Associations" do
-  #   it { should belongs_to(:booking) }
-  # end
+  describe "Associations" do
+    it { should belong_to(:booking) }
+  end
 
   describe "Validations" do
     let(:payment) { build(:payment) }
@@ -62,27 +62,42 @@ RSpec.describe Payment, type: :model do
       expect(payment).to_not be_valid
     end
   end
-
-  describe "Callbacks" do
-    let(:payment) { create(:payment) } # Assuming you have FactoryBot factories set up
-    let(:booking) { payment.booking }
-
-    it "updates booking status to 'Booked' after create" do
-      expect(booking.status).to eq("Booked")
+  
+  describe "callbacks" do
+    describe"before create" do
+      it "sets the amount before creation" do
+        booking = create(:booking) # Assuming FactoryBot is set up for Booking
+        payment = build(:payment, booking: booking, amount: nil)
+        payment.save
+        expect(payment.amount).to eq(booking.calculate_amount)
+      end
     end
 
-    # it "sends booking status 'Booked' after create" do
-    #   expect(BookingMailer).to receive(:booking_status_booked).with(booking).and_return(double(deliver_now: true))
-    #   payment.save
-    # end
+    describe "after create" do
+      it "marks booking status as Booked" do
+        payment = create(:payment)
+        expect(payment.booking.status).to eq("Booked")
+      end
 
-    it "assigns hotel to user after create" do
-      expect(booking.room.hotel.users).to include(booking.user)
+      before do
+        allow(BookingMailer).to receive(:booking_status_booked).and_return(double("BookingMailer", deliver_now: true))
+      end
+
+      it "send_booking_status_booked after payment" do
+        payment = create(:payment)
+        expect(BookingMailer).to have_received(:booking_status_booked).with(payment)
+      end
+
+      it "assign hotel to user" do
+        user = create(:user)
+        hotel = create(:hotel)
+        room = create(:room, hotel: hotel) 
+        booking = create(:booking, room:room, user: user )
+        payment = create(:payment, booking: booking)
+        
+        expect(hotel.users).to include(user)
+      end
+
     end
-
-    # it "does not assign duplicate hotel to user after create" do
-    #   booking.room.hotel.users << booking.user
-    #   expect(booking.room.hotel.users.count).to eq(1)
-    # end
   end
 end

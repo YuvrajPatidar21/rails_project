@@ -1,11 +1,11 @@
 require 'rails_helper'
-
 RSpec.describe Booking, type: :model do
-  # describe "Associations" do
-  #   it { should belongs_to(:room) }
-  #   it { should belongs_to(:user) }
-  #   it { should have_one(:payment).dependent(:destroy) }
-  # end
+  
+  describe "Associations" do
+    it { should belong_to(:user) }
+    it { should belong_to(:room) }
+    it { should have_one(:payment).dependent(:destroy) }
+  end
   
   let(:room) { create(:room) }
   let(:user) { create(:user) }
@@ -47,16 +47,15 @@ RSpec.describe Booking, type: :model do
   end
 
   describe "Callbacks" do
-    
     before do
       allow(BookingMailer).to receive(:booking_status_pending).and_return(double("BookingMailer", deliver_now: true))
       allow(BookingMailer).to receive(:booking_cancle).and_return(double("BookingMailer", deliver_now: true))
     end
     
-    # it "marks booking as pending before creation" do
-    #   booking = create(:booking, room: room, user: user)
-    #   expect(booking.status).to eq("Pending")
-    # end    
+    it "marks booking as pending before creation" do
+      booking = create(:booking, room: room, user: user)
+      expect(booking.status).to eq("Pending")
+    end    
 
     it "sends booking status after save" do
       booking = create(:booking, room: room, user: user)

@@ -2,15 +2,15 @@
 
   RSpec.describe Hotel, type: :model do
     
-    # describe "Associations" do
-    #   it { should have_and_belong_to_many(:users).dependent(:destroy) }
-    #   it { should have_many(services).dependent(:destroy) }
-    #   it { should have_many(:room_types). dependent(:destroy) }
-    #   it { should have_many(:rooms).dependent(:destroy) }
-    #   it { should have_many(:bookings).through(:rooms).dependent(:destroy) }
-    #   it { should have_many(:payments).through(:bookings).dependent(:destroy) }
-    #   it { should have_many_attached(:hotel_pictures) }
-    # end
+    describe "Associations" do
+      it { should have_and_belong_to_many(:users).dependent(:destroy) }
+      it { should have_many(:services).dependent(:destroy) }
+      it { should have_many(:room_types). dependent(:destroy) }
+      it { should have_many(:rooms).dependent(:destroy) }
+      it { should have_many(:bookings).through(:rooms).dependent(:destroy) }
+      it { should have_many(:payments).through(:bookings).dependent(:destroy) }
+      it { should have_many_attached(:hotel_pictures) }
+    end
 
     describe "Validations" do
       let(:hotel) {build(:hotel) }
