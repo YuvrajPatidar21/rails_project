@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   layout "home"
   def index
     @hotels = Hotel.all
+    @contact = Contact.new
   end
  
   def about
@@ -19,11 +20,13 @@ class HomeController < ApplicationController
 
   def process_contact
     @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.contact_email(@contact).deliver_now
-      redirect_to root_path, notice: 'Thank you for contacting us!'
-    else
-      render :contact
+    respond_to do |format|
+      if @contact.save
+        ContactMailer.contact_email(@contact).deliver_now
+        format.html { redirect_to root_path, notice: 'Thank you for contacting us!' }
+      else
+        format.html { render :contact, status: :unprocessable_entity }
+      end
     end
   end
 

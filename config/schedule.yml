@@ -1,0 +1,19 @@
+# Sidekiq::Cron::Job.create(
+#   name: 'Hello World Job',
+#   cron: '*/1 * * * * *', # Run every 5 seconds
+#   class: 'HelloWorldJob'
+# )
+
+# Sidekiq::Cron::Job.create(
+#   name: 'Send Daily morning Email Job',
+#   cron: '* * * * *',
+#   class: 'SendMorningMailJob'
+# )
+
+# hello_world_job:
+#   cron: '* * * * *'
+#   class: 'HelloWorldJob'
+
+# send_daily_mornings_email_job:
+#   cron: '35 15 * * *'
+#   class: 'SendMorningMailJob'
