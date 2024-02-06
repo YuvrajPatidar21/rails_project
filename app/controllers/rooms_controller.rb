@@ -40,7 +40,7 @@ class RoomsController < ApplicationController
     if @room.destroy!
       redirect_to hotel_rooms_path, notice: "Room was successfully destroyed."
     else
-      redirect_to hotel_room_path, notice: "Room was not destroyed."
+      redirect_to hotel_room_path, alert: "Room was not destroyed."
     end
   end
 

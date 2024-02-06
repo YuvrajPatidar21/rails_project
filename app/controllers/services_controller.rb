@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   before_action :set_hotel
   before_action :set_services, only: %i[show edit update destroy]
-
+  
   def index
     @services = @hotel.services.page(params[:page]).per(6)
   end
@@ -37,7 +37,7 @@ class ServicesController < ApplicationController
     if @service.destroy!
       redirect_to hotel_services_path, notice: "Service was successfully destroyed."
     else
-      redirect_to hotel_service_path, notice: "Service was not destroyed."
+      redirect_to hotel_service_path, alert: "Service was not destroyed."
     end
   end
 

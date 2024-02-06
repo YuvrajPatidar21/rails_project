@@ -40,7 +40,7 @@ RSpec.describe HomeController, type: :controller do
       get :contact
       expect(assigns(:contact)).to be_a_new(Contact)
     end
-
+|
     it "redner the contact template" do
       get :contact
       expect(response).to render_template("contact")

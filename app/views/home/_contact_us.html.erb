@@ -4,6 +4,7 @@
       <div class="section-title">
         <h2>Contact Us</h2>
       </div>
+      <%= render 'shared/flash_notice' %> 
       <div class="row mt-1 d-flex justify-content-end" data-aos="fade-right" data-aos-delay="100">
         <div class="col-lg-5">
           <div class="info">
@@ -25,7 +26,17 @@
           </div>
         </div>
         <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
-          <%= form_with(model: @contact, url: process_contact_path, local: true,  class:"contact-email-form") do |form| %>
+          <%= form_with(model: @contact , url: process_contact_path, class:"contact-email-form") do |form| %>
+            <% if @contact .errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(@contact .errors.count, "error") %> prohibited this contact from being saved:</h2>
+                <ul>
+                  <% @contact .errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
             <div class="row">
               <div class="col-md-6 form-group" >
                 <%= form.label :name,class: 'form-label' %>
