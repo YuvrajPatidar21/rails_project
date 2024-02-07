@@ -92,3 +92,7 @@ gem 'wkhtmltopdf-binary'
 gem 'kaminari'
 
 # gem 'faker'
+
+gem "sidekiq", "~> 7.2"
+
+gem "sidekiq-cron", "~> 1.12"

@@ -1,0 +1,7 @@
+hello_world_job:
+  cron: "* * * * * *"
+  class: "HelloWorldJob"
+
+send_morning_mail_job:
+  cron: "0 9 * * *"
+  class: "SendMorningMailJob"

@@ -7,7 +7,7 @@ FactoryBot.define do
     city { "Indore" }
     date_of_birth { Faker::Date.birthday(min_age:18, max_age:65) }
     status { "Single" }
-    role { ["customer", "manager", "admin"] }
+    role { "customer" }
     state { "Madhya Pradesh" }
     zipcode { Faker::Number.number(digits:6) }
     password {"123456789"}
