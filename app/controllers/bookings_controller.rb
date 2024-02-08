@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+  before_action :set_room, only: [:index, :new, :create, :show, :destroy]
 
   def index
     @bookings = @room.bookings.page(params[:page]).per(10)
@@ -27,25 +27,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
-  def edit
-    @booking = @room.bookings.find(params[:id])
-  end
-
   def create
     @booking = @room.bookings.new(booking_params)
     if @booking.save
       redirect_to hotel_room_booking_path(@room.hotel, @room, @booking), notice: "Booking is pending now. For confirm make payment."
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    @booking = @room.bookings.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to hotel_room_booking_path(@room.hotel, @room, @booking), notice: "Booking was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 

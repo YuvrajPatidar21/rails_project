@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
-  # before_action :authenticate_user!
   load_and_authorize_resource
+  before_action :authenticate_user!, only: [:create, :update,:destroy]
   
   before_action :set_hotel
   before_action :set_rooms, only: %i[show edit update destroy]

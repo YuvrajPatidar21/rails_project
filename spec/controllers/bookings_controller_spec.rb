@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BookingsController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, role: "customer") }
   let(:hotel) { FactoryBot.create(:hotel) }
   let(:room) { FactoryBot.create(:room, hotel: hotel) }
   let(:booking) { FactoryBot.create(:booking, room: room, user: user) }
@@ -46,18 +46,6 @@ RSpec.describe BookingsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit, params: { room_id: room.id, id: booking.id }
-      expect(response).to have_http_status(:success)
-    end
-
-    it "assigns the requested booking as @booking" do
-      get :edit, params: { room_id: room.id, id: booking.id }
-      expect(assigns(:booking)).to eq(booking)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Booking" do
@@ -77,30 +65,6 @@ RSpec.describe BookingsController, type: :controller do
         post :create, params: { room_id: room.id, booking: FactoryBot.attributes_for(:booking, start_date: nil) }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_start_date) { Time.zone.tomorrow }
-
-      it "updates the requested booking" do
-        put :update, params: { room_id: room.id, id: booking.id, booking: { start_date: new_start_date } }
-        booking.reload
-        expect(booking.start_date.to_date).to eq(new_start_date.to_date)
-      end
-
-      it "redirects to the booking" do
-        put :update, params: { room_id: room.id, id: booking.id, booking: FactoryBot.attributes_for(:booking) }
-        expect(response).to redirect_to(hotel_room_booking_path(room.hotel, room, booking))
-      end
-    end
-
-    context "with invalid params" do
-      # it "returns a success response (i.e. to display the 'edit' template)" do
-      #   put :update, params: { room_id: room.id, id: booking.id, booking: FactoryBot.attributes_for(:booking, start_date: nil) }
-      #   expect(response).to have_http_status(:unprocessable_entity)
-      # end
     end
   end
 
