@@ -20,7 +20,7 @@ RSpec.describe Room, type: :model do
       room.room_number = nil
       expect(room).to_not be_valid
     end
-    it "is invalid wihtout statys" do
+    it "is invalid wihtout status" do
       room.status = nil
       expect(room).to_not be_valid
     end

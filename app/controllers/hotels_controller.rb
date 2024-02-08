@@ -19,19 +19,19 @@ class HotelsController < ApplicationController
 
   def create
     @hotel = Hotel.new(hotel_params)
-      if @hotel.save
-        redirect_to hotel_url(@hotel), notice: "Hotel was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @hotel.save
+      redirect_to hotel_url(@hotel), notice: "Hotel was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
-      if @hotel.update(hotel_params)
-        redirect_to hotel_url(@hotel), notice: "Hotel was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @hotel.update(hotel_params)
+      redirect_to hotel_url(@hotel), notice: "Hotel was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
