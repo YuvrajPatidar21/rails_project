@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_100720) do
     t.integer "cvv"
     t.string "bank_name"
     t.decimal "amount"
-    t.date "payment_date", default: "2024-01-23"
+    t.date "payment_date", default: Date.today
     t.bigint "booking_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
