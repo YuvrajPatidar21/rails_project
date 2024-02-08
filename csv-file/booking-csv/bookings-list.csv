@@ -1,0 +1,9 @@
+ID,Check-in Date,Check-out date,Hotel-name,Room-name,Price /day,Customer-name,Status,Created_at,Updated-at
+98,2024-01-30,2024-01-30,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-01-19 16:34:56 +0530,2024-01-22 13:46:01 +0530
+100,2024-02-03,2024-02-04,Christine Carey,Presidential,3500.0,Admin,Booked,2024-01-22 15:10:23 +0530,2024-01-22 15:10:33 +0530
+101,2024-02-03,2024-02-04,Christine Carey,Accessible Room,3000.0,Admin,Booked,2024-01-23 15:01:25 +0530,2024-01-23 15:01:54 +0530
+102,2024-01-26,2024-01-26,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-01-25 10:07:12 +0530,2024-01-25 10:08:15 +0530
+103,2024-01-27,2024-01-27,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-01-25 11:13:30 +0530,2024-01-25 11:14:18 +0530
+105,2024-02-05,2024-02-05,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-02-05 13:53:47 +0530,2024-02-05 13:54:33 +0530
+106,2024-02-06,2024-02-06,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-02-06 10:55:17 +0530,2024-02-06 10:55:56 +0530
+88,2024-01-19,2024-01-20,Christine Carey,Presidential,3500.0,Yuvraj,Booked,2024-01-19 15:52:43 +0530,2024-01-19 15:52:59 +0530
