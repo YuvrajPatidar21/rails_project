@@ -40,6 +40,12 @@
             </ul>
           </div>
         <% end %>
+        <% if current_user.owner? || current_user.manager? %>
+          <div>
+            <%= form.label :user_id, class: "form-label"%>
+            <%= form.collection_select :user_id, User.all, :id, :name ,{}, class:'form-select'  %>          
+          </div>
+        <% end %>
         <div class="col-md-6 mb-3">
           <%= form.label :start_date, class: "form-label"%>
           <%= form.date_field :start_date, class: "form-control" %>

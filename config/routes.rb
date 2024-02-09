@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -30,7 +33,7 @@ Rails.application.routes.draw do
   end
   get '/bookings/:booking_id/payments/:id/invoice', to: 'payments#invoice', as: 'invoice'
   # resources :room_types
-  namespace :admin do
+  namespace :owner do
     resources :dashboard, only: [:index]
     get 'new_user', to: 'dashboard#new_user', as: 'dashboard_new_user'
     post 'create_user', to: 'dashboard#create_user', as: 'dashboard_create_user'
