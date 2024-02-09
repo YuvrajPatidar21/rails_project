@@ -1,10 +1,11 @@
 class User < ApplicationRecord
-  has_and_belongs_to_many :hotels
+  
+  has_and_belongs_to_many :hotels, join_table: :hotels_users
   has_one_attached :profile_picture
   has_many :bookings, dependent: :destroy
   has_many :rooms, through: :bookings, dependent: :destroy
   has_many :payments, through: :bookings, dependent: :destroy
-
+  
   devise :database_authenticatable, 
          :registerable,
          :recoverable, 
@@ -22,7 +23,7 @@ class User < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true, numericality: { only_integer: true}, length: { is: 6}
-  
+ 
   after_create do
     WelcomeMailer.send_greetings_notification(self).deliver_now
   end
@@ -32,7 +33,7 @@ class User < ApplicationRecord
     self.city = city.titleize
     self.state = state.titleize
   end
-  enum role: [:customer, :manager, :admin]
+  enum role: [:customer, :manager, :owner]
     
   after_initialize :set_default_role, if: :new_record?
               

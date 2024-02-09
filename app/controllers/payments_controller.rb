@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: %i[ show invoice ]
 
   def display_payment
-    if current_user.admin?
+    if current_user.owner?
       @payments = Payment.all.page(params[:page]).per(10)
     elsif current_user.manager?
       current_user.hotels.each do |hotel|

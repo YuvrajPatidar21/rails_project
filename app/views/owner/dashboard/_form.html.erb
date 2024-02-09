@@ -4,7 +4,7 @@
       <h2 class="card-title text-center ">New Registraion</h2>
     </div>
     <div class="card-body">
-      <%= form_with(model: user, url: admin_dashboard_create_user_path, class: 'row g-3') do |f| %>
+      <%= form_with(model: user, url: owner_dashboard_create_user_path, class: 'row g-3') do |f| %>
         <% if @user.errors.any? %>
           <div style="color: red">
             <h2><%= pluralize(user.errors.count, "error") %> prohibited this hotel from being saved:</h2>
@@ -35,15 +35,15 @@
           <%= f.label :address, class:'form-label' %>
           <%= f.text_field :address, class: 'form-control' %>
         </div>
-        <% if current_user.admin? %>
+        <% if current_user.owner? %>
         
         <div class="col-md-6">
             <%= f.label :hotel_ids, 'Select Hotel', class:'form-label' %>
-            <%= f.collection_select :hotel_ids, Hotel.all, :id, :name ,{}, class:'form-select' %>    
+            <%= f.collection_select :hotel_ids, current_user.hotels, :id, :name ,{}, class:'form-select' %>    
         </div>
         <% end %>
         <% if current_user %>
-          <% if current_user.admin? || current_user.manager?%>
+          <% if current_user.owner? || current_user.manager?%>
             <div>
               <div class="col-md-6">
                 <%= f.label :role, class:'form-label' %>

@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   end
   
   def display_booking
-    if current_user.admin?
+    if current_user.owner?
       # @bookings = Booking.all
       @bookings = Booking.all.page(params[:page]).per(10)
     elsif current_user.manager?
@@ -53,6 +53,10 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:start_date, :end_date, :room_id).merge(user: current_user)
+      if current_user.owner? || current_user.manager?
+        params.require(:booking).permit(:start_date, :end_date, :room_id, :user_id)
+      else
+        params.require(:booking).permit(:start_date, :end_date, :room_id).merge(user: current_user)
+      end
     end
 end
